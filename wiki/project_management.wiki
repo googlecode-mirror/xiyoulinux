@@ -11,11 +11,11 @@
 
 = 功能需求 =
 
-（1）完成对项目的增删改查
-（2）调用google code api 来动态读取google code的项目内容 
-（3）评论功能
-（4）进度记录和更新记录（同（2））
-（4）【待讨论】小组成员可以对项目进行管理
+*完成对项目的增删改查
+*调用google code api 来动态读取google code的项目内容 
+*评论功能
+*进度记录和更新记录（google code api）
+*【待讨论】小组成员可以对项目进行管理
 
 = 数据库表 =
 
@@ -25,15 +25,15 @@
 = 简要分析 =
 
 Google code本身提供的获取信息的方式有以下几个方法：
-Project Information  	Gadget
-Project Updates 	Atom
-Downloads 	Atom | Gadget
-Wiki 	Atom | Gadget
-Issue Updates 	Atom | Gadget
-Issues 	Gadget | CSV
-SVN Source Changes	Atom | Gadget
-Hg Source Changes	Atom
-Code Search 	Gadget
+*Project Information  	Gadget
+*Project Updates 	Atom
+*Downloads 	Atom | Gadget
+*Wiki 	Atom | Gadget
+*Issue Updates 	Atom | Gadget
+*Issues 	Gadget | CSV
+*SVN Source Changes	Atom | Gadget
+*Hg Source Changes	Atom
+*Code Search 	Gadget
 *目前使用atom应该是最方便的，可以用rss订阅过来（借助xrssreader），并嵌入项目管理页面
 atom可以动态获取更新等信息
 
@@ -46,4 +46,3 @@ Wiki markup help，这样可以节省管理员操作，只需对项目配个地�
 （1）解析
 （2）根据项目确定权限
 需对数据库进行调整～
-
