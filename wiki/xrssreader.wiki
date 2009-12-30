@@ -18,8 +18,9 @@
 = 数据设计需求 =
 
   * 数据库表名：xrssreader
-  * 表字段：id， blog, rss, notes
+  * 表字段：id， name, blog, rss, notes
 
+此处是使用xml文件还是数据库还有待考虑，原来使用的xml的文件。
 
 = 界面设计需求 =
 
