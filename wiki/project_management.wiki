@@ -34,13 +34,12 @@ Google code本身提供的获取信息的方式有以下几个方法：
     * SVN Source Changes	Atom | Gadget
     * Hg Source Changes	Atom
     * Code Search 	Gadget
-* 目前使用atom应该是最方便的，可以用rss订阅过来（借助xrssreader），并嵌入项目管理页面
+目前使用atom应该是最方便的，可以用rss订阅过来（借助xrssreader），并嵌入项目管理页面
 atom可以动态获取更新等信息
 
 对于Project Infomation未提供atom
 有两种可行方法：【待讨论】
-    * 对主页面进行解析，因为他们的标题或段落等都是由固定的标签确定的，详见：
-Wiki markup help，这样可以节省管理员操作，只需对项目配个地址即可；
+    * 对主页面进行解析，因为他们的标题或段落等都是由固定的标签确定的，详见：Wiki markup help，这样可以节省管理员操作，只需对项目配个地址即可；
     * 对每个项目建立权限，由项目发起者分配，只需管理员做个审核即可，所有项目信息由发起者进行维护并更新。
 此处根据情况，可分别采取：
     * 解析
