@@ -5,7 +5,7 @@
 
 百科（Wiki）
 
-预计使用技术：php、mysql、MediaWiki?
+预计使用技术：php、mysql、Mediawiki
 
 负责人：高伟
 
@@ -13,11 +13,11 @@
 
 预计完成的任务：
 
-（1）制作MediaWiki的皮肤，保证网站的整体风格的统一
-     详细说明：了解MediaWiki，学习它的配置。如果本身的配置可以完成风格的统一就使用本身的配置，如果不能完成则用php加mysql完成。
+（1）制作Mediawiki的皮肤，保证网站的整体风格的统一
+     详细说明：了解Mediawiki，学习它的配置。如果本身的配置可以完成风格的统一就使用本身的配置，如果不能完成则用php加mysql完成。
 
-（2）研究MediaWiki的用户管理体系，保证整个网站的用户一次注册，在wiki中可以使用
-     详细说明： 研究MediaWiki的用户管理体系，用php编写一个插件使得管理模块可以调用它，完成用的注册而使用wiki。
+（2）研究Mediawiki的用户管理体系，保证整个网站的用户一次注册，在wiki中可以使用
+     详细说明： 研究Mediawiki的用户管理体系，用php编写一个插件使得管理模块可以调用它，完成用的注册而使用wiki。
 
 （3）教大家编辑wiki的方法和技巧 
      详细说明： 总结技巧，wiki的[http://code.google.com/p/support/wiki/WikiSyntax 方法]
