@@ -11,14 +11,8 @@
 = 预计完成的任务 =
 
 Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+  * 可以从数据库读出所有小组成员的博客地址和rss地址
+  * 读取小组博客，显示在页面上
+  * 页面效果和其他页面相统一
 
-
-
-
-
-：
-
-（1）可以从数据库读出所有小组成员的博客地址和rss地址 （2）读取小组博客，显示在页面上 （3）页面效果和其他页面相统一 
+= 设计需求 =
