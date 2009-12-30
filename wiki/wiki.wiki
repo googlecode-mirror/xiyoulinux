@@ -1,0 +1,26 @@
+#labels wiki
+#需求说明
+
+= wiki寒假计划 =
+
+百科（Wiki）
+
+预计使用技术：php、mysql、MediaWiki?
+
+负责人：高伟
+
+参与者：边疆、刘小虎
+
+预计完成的任务：
+
+（1）制作MediaWiki的皮肤，保证网站的整体风格的统一
+     详细说明：了解MediaWiki，学习它的配置。如果本身的配置可以完成风格的统一就使用本身的配置，如果不能完成则用php加mysql完成。
+
+（2）研究MediaWiki的用户管理体系，保证整个网站的用户一次注册，在wiki中可以使用
+     详细说明： 研究MediaWiki的用户管理体系，用php编写一个插件使得管理模块可以调用它，完成用的注册而使用wiki。
+
+（3）教大家编辑wiki的方法和技巧 
+     详细说明： 总结技巧，wiki的[http://code.google.com/p/support/wiki/WikiSyntax 方法]
+                整理过去编写的wiki使得更加有条理性，更加整洁明了。
+
+ 
