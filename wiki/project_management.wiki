@@ -11,11 +11,11 @@
 
 = 功能需求 =
 
-    *完成对项目的增删改查
-    *调用google code api 来动态读取google code的项目内容 
-    *评论功能
-    *进度记录和更新记录（google code api）
-    *【待讨论】小组成员可以对项目进行管理
+    * 完成对项目的增删改查
+    * 调用google code api 来动态读取google code的项目内容 
+    * 评论功能
+    * 进度记录和更新记录（google code api）
+    * 【待讨论】小组成员可以对项目进行管理
 
 = 数据库表 =
 
