@@ -1,4 +1,4 @@
-#summary One-sentence summary of this page.
+#xrssreader开发说明.
 
 = RSS阅读器 =
 
@@ -8,11 +8,26 @@
 
 参与者：刘大海
 
-= 预计完成的任务 =
+= 功能需求 =
 
-Add your content here.  Format your content with:
   * 可以从数据库读出所有小组成员的博客地址和rss地址
   * 读取小组博客，显示在页面上
   * 页面效果和其他页面相统一
+  * 添加和删除订阅
 
-= 设计需求 =
+= 数据设计需求 =
+
+  * 数据库表名：xrssreader
+  * 表字段：id， blog, rss, notes
+
+
+= 界面设计需求 =
+
+  * 使用典型"T"字型设计，
+  * 顶部为小组logo和一些其它功能键（订阅，管理订阅等）
+  * 左边为blog订阅信息
+  * 右边为每个blog的订阅信息
+
+= 其它需求 =
+
+  * 进一步设计中再看
