@@ -1,5 +1,4 @@
-#xrssreader开发说明.
-
+#labels xrssreader开发说明
 = RSS阅读器 =
 
 预计使用的技术有：xml、javascript、html、css、ajax
