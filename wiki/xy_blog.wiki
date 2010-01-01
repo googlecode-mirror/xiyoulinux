@@ -1,2 +1,2 @@
-#labels blog
+#labels 网站blog系统
 == 请宋飞补充 ==
