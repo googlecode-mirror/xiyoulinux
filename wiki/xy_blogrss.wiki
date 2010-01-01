@@ -1,3 +1,4 @@
+#labels 博客订阅
 === 技术成员 ===
 
 预计使用的技术有：xml、javascript、html、css、ajax
