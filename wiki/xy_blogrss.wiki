@@ -19,13 +19,14 @@
 === 数据设计需求 ===
 
   * 数据库表名：xy_members
-  * 表字段：id，year，sname， name, blog, rss, notes ，
+  * 表字段：id，year，title， name, blog, rss, notes ，
   * 表字含义：
          * id：索引使用
          * year：年级（以入学年为准，以04年为开始，04年之前的也归入04年）
          * title：在本系统中显示的blog名称（给订阅的blog名字，以便识别是谁的blog或是其它用途）
          * name：订阅blog的真实名称，这个是和blog中真实的名称一致
-         * link：rss URL
+         * blog: blog URL
+         * rss：rss URL
          * notes：其它备注
  
 xml文件字段设计：
@@ -35,7 +36,7 @@ xml文件字段设计：
          * year：年级（以入学年为准，以04年为开始，04年之前的也归入04年）
          * title：在本系统中显示的blog名称（给订阅的blog名字，以便识别是谁的blog或是其它用途）
          * name：订阅blog的真实名称，这个是和blog中真实的名称一致
-         * link：rss URL
+         * rss：rss URL
 
 
 此处是使用xml文件还是数据库还有待考虑，原来使用的xml的文件（暂时调试使用xml文件）。
