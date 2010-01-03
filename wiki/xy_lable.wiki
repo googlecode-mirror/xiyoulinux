@@ -44,3 +44,23 @@ CREATE TABLE `xy_tag` (
   PRIMARY KEY (`tag_ID`)
 ) 
 }}}
+
+===标签目标关系表===
+
+||*字段名*||*类型*||*说明*||*备注*||
+||relation_ID||bigint(20)||关系ID号||主键 非空 唯一 自增||
+||relation_type||varchar(255)||说明目标关系类型|| ||
+||relation_tag_ID||bigint(20)||标签ID号|| ||
+||relation_target_ID||bigint(20)||目标对象ID号||
+
+  生成表的语句：
+
+{{{
+CREATE TABLE `xy_tag_relation` (
+  `relation_ID` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `relation_type` varchar(255) DEFAULT NULL,
+  `relation_tag_ID` bigint(20) unsigned DEFAULT NULL,
+  `relation_target_ID` bigint(20) unsigned DEFAULT NULL,
+  PRIMARY KEY (`relation_ID`)
+)
+}}}
