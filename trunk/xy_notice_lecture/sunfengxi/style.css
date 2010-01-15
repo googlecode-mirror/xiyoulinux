@@ -1,0 +1,33 @@
+BODY {
+	SCROLLBAR-FACE-COLOR: #e0dfe3; FONT-SIZE: 12px; BACKGROUND: url(../images/bj.gif) #e2e1e1 fixed repeat-y center top; MARGIN: 0px; SCROLLBAR-HIGHLIGHT-COLOR: #f5f9ff; SCROLLBAR-SHADOW-COLOR: #828282; COLOR: #000000; SCROLLBAR-3DLIGHT-COLOR: #828282; SCROLLBAR-ARROW-COLOR: #797979; SCROLLBAR-TRACK-COLOR: #ececec; SCROLLBAR-DARKSHADOW-COLOR: #ffffff;background-color:#ffffff;
+}
+TD {
+	FONT-SIZE: 12px; COLOR: #000000; FONT-FAMILY: Arial, Helvetica, sans-serif
+}
+.bt_font {
+	FONT-SIZE: 14px; FONT-FAMILY: Arial, Helvetica, sans-serif
+}
+A:link {
+	FONT-SIZE: 12px; COLOR: #000000; TEXT-DECORATION: none
+}
+A:visited {
+	FONT-SIZE: 12px; COLOR: #000000; TEXT-DECORATION: none
+}
+A:hover {
+	FONT-SIZE: 12px; COLOR: #ff0000; TEXT-DECORATION: underline
+}
+A:active {
+	FONT-SIZE: 12px; COLOR: #ff0000; TEXT-DECORATION: none
+}
+INPUT {
+	BORDER-RIGHT: #cccccc 1px solid; BORDER-TOP: #333333 1px solid; BORDER-LEFT: #333333 1px solid; COLOR: #666666; BORDER-BOTTOM: #cccccc 1px solid; FONT-FAMILY: 12
+}
+.input {
+	BORDER-RIGHT: medium none; BORDER-TOP: medium none; BORDER-LEFT: medium none; BORDER-BOTTOM: medium none
+}
+.style1 {
+	COLOR: #ffffff
+}
+.style2 {
+	COLOR: #ffffff
+}
