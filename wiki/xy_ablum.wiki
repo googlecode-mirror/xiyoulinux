@@ -1,4 +1,4 @@
-#labels 相册管理
+#labels 相册管理,wordpressplugin
 === 技术成员 ===
 
 预计使用的技术：动态语言：php；数据库：mysql；表现技术ajax,html,css等
@@ -30,11 +30,11 @@
 
 （1）记录相册相关信息的表
 
+     xy_album表记录相册信息 album_ID, album_name, album_cover, album_intro, album_date
+
 （2）记录照片相关信息的表
-
-（3）照片和相册关系表
-
-备注：(使用数据库与否还没最终确定，因为不使用数据库完全可以实现预期的一些功能，有待继续讨论)
+     
+     xy_photo表记录照片的信息photo_ID,photo_album,photo_url,photo_thumb_url,photo_intro,photo_date,photo_tag
 
 三、表现层设计：
 
