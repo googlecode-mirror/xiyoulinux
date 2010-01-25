@@ -48,7 +48,7 @@
 
 目前实现的功能：
 
-	1.激活插件的同时在数据库中生成wp_xy_album和wp_xy_photo表单
+	 1.激活插件的同时在数据库中生成wp_xy_album和wp_xy_photo表单
 
 	2.在/wp-content/下生成xy-album文件夹，用于存放上传的照片
 
@@ -57,6 +57,8 @@
 	4.上传照片（目前只是支持单张照片的上传，批量上传在后面的版本中将会实现）
 
 	5.照片和相册信息分别保存在数据库wp_xy_album和wp_xy_photo表中
+
+        (工作进度详细参考项目更新日志 http://code.google.com/p/xiyoulinux/source/browse/trunk/xy_album/doc/readme.txt 谢谢)
 
 === 任务分配 ===
 
