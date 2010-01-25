@@ -3,7 +3,7 @@
 Plugin Name: xy_album
 Plugin URI: http://URI_Of_Page_Describing_Plugin_and_Updates
 Description: this is a album-plgin for the web of the xiyoulinux,it has completed simply to upload photos,scan the photos,comment them.
-Version: 0.1
+Version: 1.0.2
 Author: 周永飞,李阳,孙建刚
 Author URI: http://URI_Of_The_Plugin_Author
 */
@@ -25,8 +25,16 @@ Author URI: http://URI_Of_The_Plugin_Author
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
+include_once( $plugin_dir . 'xy_album_config.php');
 
 
+/**
+* 功能:添加菜单
+* 作者:周永飞
+* 输入参数：void
+* 输出参数：void
+* 日期:
+*/
 function xy_add_feedburner_options_page() {
 if (function_exists('add_menu_page')) {
 $file="xy_album/xy_album_admin.php";
@@ -41,13 +49,12 @@ add_action('admin_menu', 'xy_add_feedburner_options_page');
 $xy_albumdb_version = "1.0";
 
 /**
- * xy_album_install ()
- * create database tables while installing the plugin 
- * 
- * @
- * @return void
- * @
- */
+* 功能:安装插件时的一些action
+* 作者:周永飞
+* 输入参数：void
+* 输出参数：void
+* 日期:
+*/
 
 function xy_album_install () {
    global $wpdb;

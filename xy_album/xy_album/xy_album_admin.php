@@ -10,28 +10,24 @@ update_option('gallery_folder',$folder_uri);
 
 
 <?php
-/**
- * This is a frontend for XY_album_Gallery's Wordpress admin panel.
- * 
- * @package XY_album_Gallery
- * @author 
- * @
- */
 
 
 if (isset($_GET['create_folder'])) {
-   xy_create_gallery_folder($_GET['create_folder']);  
+   xy_create_gallery_folder($_GET['create_folder']); 
+   //同时创建一个存放缩略图的目录 
+   xy_create_gallery_folder($_GET['create_folder']."thumbs"); 
 }  
 
 xy_build_admin_form();
 
 
 /**
- * xy_build_admin_form()
- * builds the Settings->XY_album Gallery Admin form
- * 
- * @return void
- */
+* 功能:建立管理form
+* 作者:周永飞
+* 输入参数：void
+* 输出参数：void
+* 日期:
+*/
 function xy_build_admin_form() {
   global $xy_text_domain, $plugin_dir;
 
@@ -62,7 +58,7 @@ function xy_build_admin_form() {
                               <strong style='color:#ff0000;'><?php _e( 'WARNING', $xy_text_domain ); ?></strong>: <?php _e( 'The specified gallery folder does not exist', $xy_text_domain ); ?>:
                               <code><?php _e(get_option('gallery_folder'), $xy_text_domain); ?></code><br />
                               
-								<a href="admin.php?page=xy_album/xy_album_admin.php&amp;create_folder=<?php echo get_option('gallery_folder') ?>">为我创建这个相册</a>                             
+								<a href="admin.php?page=xy_album/xy_album_admin.php&amp;create_folder=<?php echo get_option('gallery_folder') ?>">为我创建这个目录</a>                             
                             </div>
                   <?php
                           }
