@@ -1,11 +1,11 @@
 <?php
 /*
 Plugin Name: xy_album
-Plugin URI: http://URI_Of_Page_Describing_Plugin_and_Updates
+Plugin URI: http://code.google.com/p/xiyoulinux/downloads/list
 Description: this is a album-plgin for the web of the xiyoulinux,it has completed simply to upload photos,scan the photos,comment them.
-Version: 1.0.2
+Version: 1.0.4
 Author: 周永飞,李阳,孙建刚
-Author URI: http://URI_Of_The_Plugin_Author
+Author URI: http://blog.chinaunix.net/u3/104183/
 */
 
 /*  Copyright YEAR  PLUGIN_AUTHOR_NAME  (email : PLUGIN AUTHOR EMAIL)
@@ -37,7 +37,7 @@ include_once( $plugin_dir . 'xy_album_config.php');
 */
 function xy_add_feedburner_options_page() {
 if (function_exists('add_menu_page')) {
-$file="xy_album/xy_album_admin.php";
+$file=dirname(__FILE__)."/xy_album_admin.php";
 add_menu_page('xy_album', 'xy_album', 8, $file );
 }
 }
@@ -89,13 +89,7 @@ function xy_album_install () {
       require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
       dbDelta($sql2album);
       dbDelta($sql2photo);
-
-      /*$insert = "INSERT INTO " . $table_name .
-            " (time, name, text) " .
-            "VALUES ('" . time() . "','" . $wpdb->escape($welcome_name) . "','" . $wpdb->escape($welcome_text) . "')";
-
-      $results = $wpdb->query( $insert );*/
- 
+      
       add_option("xy_albumdb_version", $xy_albumdb_version);
 
    }

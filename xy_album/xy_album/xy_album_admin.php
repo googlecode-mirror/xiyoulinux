@@ -38,7 +38,7 @@ function xy_build_admin_form() {
     
     <div class="wrap">
  	
-    		<div id="icon-options-general" class="icon32"><br /></div><h2>西邮linux相册管理<?php echo XY_ALBUM_VERSION?></h2></div>
+    		<div id="icon-options-general" class="icon32"><br /></div><h2>西邮 linux相册管理  <?php echo XY_ALBUM_VERSION?></h2></div>
 
           <!-- Main Gallery Options -->
             
@@ -56,9 +56,8 @@ function xy_build_admin_form() {
                             <div>
                             <br />
                               <strong style='color:#ff0000;'><?php _e( 'WARNING', $xy_text_domain ); ?></strong>: <?php _e( 'The specified gallery folder does not exist', $xy_text_domain ); ?>:
-                              <code><?php _e(get_option('gallery_folder'), $xy_text_domain); ?></code><br />
-                              
-								<a href="admin.php?page=xy_album/xy_album_admin.php&amp;create_folder=<?php echo get_option('gallery_folder') ?>">为我创建这个目录</a>                             
+                              <code><?php _e(get_option('gallery_folder'), $xy_text_domain); ?></code><br />                   
+								<a href="admin.php?page=<?php echo XY_ALBUM_DIR?>/xy_album_admin.php&amp;create_folder=<?php echo get_option('gallery_folder') ?>">为我创建这个目录</a>                             
                             </div>
                   <?php
                           }
@@ -66,23 +65,28 @@ function xy_build_admin_form() {
                 </td>
               </tr> 
               <br />
-                <h4 /><a href="admin.php?page=xy_album/xy_album_admin.php&amp;allow_file_loading=true"><?php _e('照片上传', $xy_test); ?></a>
-                <?php
-                if($_GET['allow_file_loading']==true){
-				xy_file_load();
-				}
-				if($_GET['action_file_upload']==true){
-				file_upload();
-				}
+              
+				<h4 /><a href="admin.php?page=<?php echo XY_ALBUM_DIR?>/xy_album_admin.php&amp;allow_create_album=true"><?php _e('创建相册', $xy_test); ?></a>
+				<?php
 				if($_GET['allow_create_album']==true){
 				xy_create_album();
 				}
 				if($_GET['action_create_album']==true){
 				create_album();
 				}
-                ?>
+                ?>              
+			 <br />
+                <h4 /><a href="admin.php?page=<?php echo XY_ALBUM_DIR?>/xy_album_admin.php&amp;allow_file_loading=true"><?php _e('照片上传', $xy_test); ?></a>
+                <?php
+                if($_GET['allow_file_loading']==true){
+				xy_file_load();
+				}
+				if($_GET['action_file_upload']==true){
+				file_upload();
+				}?>
+
               <br />
-                <h4 /><a href="admin.php?page=xy_album/xy_album_admin.php&amp;allow_file_manager=true"><?php _e('照片管理', $xy_text_domain); ?></a>
+                <h4 /><a href="admin.php?page=<?php echo XY_ALBUM_DIR?>/xy_album_admin.php&amp;allow_file_manager=true"><?php _e('照片管理', $xy_text_domain); ?></a>
                 <?php
                 if($_GET['allow_file_manager']==true){
 				xy_file_manage();
