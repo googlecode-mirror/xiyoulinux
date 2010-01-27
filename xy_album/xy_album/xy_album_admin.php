@@ -49,7 +49,7 @@ function xy_build_admin_form() {
                   <?php
                     $xy_gallery_folder = get_option('gallery_folder');												
                   ?>
-                  <input name="gallery_folder" id="gallery_folder" value="<?php echo $xy_gallery_folder ?>" size="60" class="code" type="text" /> <br />
+                  <input name="gallery_folder" id="gallery_folder" value="<?php echo $xy_gallery_folder ?>" size=20 class="code" type="text" readonly="" /> <br />
                   <?php
                             if (!(file_exists(ABSPATH.get_option('gallery_folder')))) {
                   ?>
@@ -90,6 +90,16 @@ function xy_build_admin_form() {
                 <?php
                 if($_GET['allow_file_manager']==true){
 				xy_file_manage();
+				}
+                ?>
+                <!--测试页面-->
+                <h4 /><a href="admin.php?page=<?php echo XY_ALBUM_DIR?>/xy_album_admin.php&amp;allow_test=true"><?php _e('测试用例', $xy_text_domain); ?></a>
+                <?php
+                if($_GET['allow_test']==true){
+				xy_test();
+				}
+				if($_GET['action_allow_test']==true){
+				action_xy_test();
 				}
                 ?>
            
