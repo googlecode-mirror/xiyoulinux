@@ -1,7 +1,7 @@
 <?php
 
 include_once( $plugin_dir . 'xy_admin_function.php');
-include_once( $plugin_dir . 'xy_album_config.php');
+include_once( dirname(dirname(__FILE__)) . '/xy_album_config.php');
 
 $folder_uri = "wp-content/xy-album/";
 update_option('gallery_folder',$folder_uri);
@@ -57,7 +57,7 @@ function xy_build_admin_form() {
                             <br />
                               <strong style='color:#ff0000;'><?php _e( 'WARNING', $xy_text_domain ); ?></strong>: <?php _e( 'The specified gallery folder does not exist', $xy_text_domain ); ?>:
                               <code><?php _e(get_option('gallery_folder'), $xy_text_domain); ?></code><br />                   
-								<a href="admin.php?page=<?php echo XY_ALBUM_DIR?>/xy_album_admin.php&amp;create_folder=<?php echo get_option('gallery_folder') ?>">为我创建这个目录</a>                             
+								<a href="admin.php?page=<?php echo XY_ALBUM_DIR?>/admin/xy_album_admin.php&amp;create_folder=<?php echo get_option('gallery_folder') ?>">为我创建这个目录</a>                             
                             </div>
                   <?php
                           }
@@ -66,7 +66,7 @@ function xy_build_admin_form() {
               </tr> 
               <br />
               
-				<h4 /><a href="admin.php?page=<?php echo XY_ALBUM_DIR?>/xy_album_admin.php&amp;allow_create_album=true"><?php _e('创建相册', $xy_test); ?></a>
+				<h4 /><a href="admin.php?page=<?php echo XY_ALBUM_DIR?>/admin/xy_album_admin.php&amp;allow_create_album=true"><?php _e('创建相册', $xy_test); ?></a>
 				<?php
 				if($_GET['allow_create_album']==true){
 				xy_create_album();
@@ -76,7 +76,7 @@ function xy_build_admin_form() {
 				}
                 ?>              
 			 <br />
-                <h4 /><a href="admin.php?page=<?php echo XY_ALBUM_DIR?>/xy_album_admin.php&amp;allow_file_loading=true"><?php _e('照片上传', $xy_test); ?></a>
+                <h4 /><a href="admin.php?page=<?php echo XY_ALBUM_DIR?>/admin/xy_album_admin.php&amp;allow_file_loading=true"><?php _e('照片上传', $xy_test); ?></a>
                 <?php
                 if($_GET['allow_file_loading']==true){
 				xy_file_load();
@@ -86,14 +86,20 @@ function xy_build_admin_form() {
 				}?>
 
               <br />
-                <h4 /><a href="admin.php?page=<?php echo XY_ALBUM_DIR?>/xy_album_admin.php&amp;allow_file_manager=true"><?php _e('照片管理', $xy_text_domain); ?></a>
+                <h4 /><a href="admin.php?page=<?php echo XY_ALBUM_DIR?>/admin/xy_album_admin.php&amp;show_album_manager=true"><?php _e('照片管理', $xy_text_domain); ?></a>
                 <?php
-                if($_GET['allow_file_manager']==true){
-				xy_file_manage();
+                if($_GET['action_update_album']==true){
+				xy_update_album();
+				}
+                if($_GET['show_album_manager']==true){
+				show_album_manage();
+				}
+                if($_GET['show_photo_manager']==true){
+				show_photo_manage();
 				}
                 ?>
                 <!--测试页面-->
-                <h4 /><a href="admin.php?page=<?php echo XY_ALBUM_DIR?>/xy_album_admin.php&amp;allow_test=true"><?php _e('测试用例', $xy_text_domain); ?></a>
+                <h4 /><a href="admin.php?page=<?php echo XY_ALBUM_DIR?>/admin/xy_album_admin.php&amp;allow_test=true"><?php _e('测试用例', $xy_text_domain); ?></a>
                 <?php
                 if($_GET['allow_test']==true){
 				xy_test();
