@@ -62,19 +62,7 @@ function xy_options_message( $message, $success=true ) {
   }
 }
 
-/**
-* 功能:文件管理
-* 作者:周永飞
-* 输入参数：void
-* 输出参数：void
-* 日期:
-*/
 
-function xy_file_manage(){
-//echo dirname(__FILE__)."/default.jpg";
-echo"<h1>正在开发中，敬请期待</h1>";
-
-}
 
 
 
@@ -88,7 +76,7 @@ echo"<h1>正在开发中，敬请期待</h1>";
 function xy_create_album()
 {
 ?>
-<form action= "admin.php?page=<?php echo XY_ALBUM_DIR?>/xy_album_admin.php&amp;action_create_album=true&amp;allow_create_album=true" id="form_create_album" method="post" enctype="multipart/form-data"/>
+<form action= "admin.php?page=<?php echo XY_ALBUM_DIR?>/admin/xy_album_admin.php&amp;action_create_album=true&amp;allow_create_album=true" id="form_create_album" method="post" enctype="multipart/form-data"/>
     	<div>
      	<input type="text" name="album_name" id="form_album_name" size="26" value="请输入相册名" onFocus="if(value==defaultValue){value='';this.style.color='#000'}" onBlur="if(!value){value=defaultValue;this.style.color='#999'}" style="color:#999999" //>
      	<br /></br>
@@ -126,7 +114,7 @@ function create_album(){
 	  $datetime = date("Y-n-d   H:i:s");
       $insert = "INSERT INTO " . $table2album .
             " (album_name,album_cover,album_intro,album_auther_ID, album_date) " .
-            "VALUES ('" . $_POST['album_name'] . "','" .dirname(__FILE__)."/default.jpg"."','" . $album_desc ."','". $current_user->ID."','" . $datetime ."')";
+            "VALUES ('" . $_POST['album_name'] . "','" .WP_PLUGIN_URL."/xy_album_".XY_ALBUM_VERSION."/default_cover.jpg"."','" . $album_desc ."','". $current_user->ID."','" . $datetime ."')";
       $results = $wpdb->query( $insert );
       echo'<br/>';
       //echo'创建相册‘'.$_POST['album_name'].'’成功';
@@ -151,7 +139,7 @@ function xy_create_thumb($filename)
         if(!file_exists($img))
         {
         list($width, $height) = getimagesize($filename);
-        $percent = 180/$width; //缩略图文件宽180象素
+        $percent = 100/$width; //缩略图文件宽80象素
         $new_width = $width * $percent;
         $new_height = $height * $percent;
         $image_p = imagecreatetruecolor($new_width, $new_height);
@@ -195,6 +183,16 @@ function get_file_exten($filestr){
 
 
 function xy_file_load(){
+global $wpdb;
+$table2album = $wpdb->prefix . "xy_album";
+$results = $wpdb->query("SELECT * from $table2album ");
+echo '<br />';
+if($results==0){
+?>
+<strong style='color:#ff0000;'><?php _e( 'WARNING', $xy_text_domain ); ?></strong>: <?php _e( '还没有相册', $xy_text_domain ); ?>:	
+<a href="admin.php?page=<?php echo XY_ALBUM_DIR?>/admin/xy_album_admin.php&amp;allow_create_album=true">创建相册</a>s
+<?php	
+}
 ?>
 <script type="text/javascript">
 function addimg(){	 
@@ -241,10 +239,11 @@ function addimg(){
 	 
 	 //obj.options.length=0;
 	 var obj=document.getElementById('album_select');
-	 obj.options.length=0;
+	 //obj.options.length=0;
 	 obj.options.add(new Option("选择相册","2"));
 	 obj.options.add(new Option("我","1"));
-	 div.appendChild(obj);*/
+	 //options[2]=obj.options.add(new Option("我","1"));
+	 //div.appendChild(obj);*/
 	 
 	 
 	 
@@ -268,7 +267,7 @@ function addimg(){
 }
 </script>
 
-<form method="POST" id ="file_form" enctype="multipart/form-data" action="admin.php?page=<?php echo XY_ALBUM_DIR?>/xy_album_admin.php&amp;allow_file_loading=true,&amp;action_file_upload=true">
+<form method="POST" id ="file_form" enctype="multipart/form-data" action="admin.php?page=<?php echo XY_ALBUM_DIR?>/admin/xy_album_admin.php&amp;allow_file_loading=true,&amp;action_file_upload=true">
 <br />
 <strong style='color:#ff0000;'>请选择图片：</strong>
 <br />
@@ -280,12 +279,12 @@ function addimg(){
 
 	</td>
 	<div id="imgs"></div>
+	<br/>
 	<input type="button" onclick="addimg()" value="继续添加"/>
 	<select size=1 name="select_album">
 		<option selected>选择相册
 		<?php
-			global $wpdb;
-			$table2album = $wpdb->prefix . "xy_album";
+			//$table2album = $wpdb->prefix . "xy_album";
 			$album_names =  $wpdb->get_results( "SELECT album_name FROM $table2album" ); 
 			foreach($album_names as $album_name){
 			echo '<option>'.$album_name->album_name;
@@ -414,7 +413,7 @@ function file_upload(){
 					  $datetime = date("Y-n-d   H:i:s");
 					  $insert = "INSERT INTO " . $table2photo .
 							" (photo_url,photo_album,photo_thumb_url, photo_intro,photo_auther_ID, photo_date,photo_tag) " .
-							"VALUES ('" . get_option('album_folder_dir').$img_name[$j]  ."','".$select_album_ID. "','".get_option('album_folder_dir')."thumbs/".$img_name[$j]  ."','". $img_desc[$j]."','". $current_user->ID."','" . $datetime ."','".$img_tag[$j]. "')";
+							"VALUES ('" . WP_CONTENT_URL."/xy-album/".$img_name[$j]  ."','".$select_album_ID. "','".WP_CONTENT_URL."/xy-album/thumbs/".$img_name[$j]  ."','". $img_desc[$j]."','". $current_user->ID."','" . $datetime ."','".$img_tag[$j]. "')";
 					  $results = $wpdb->query( $insert );					  
 					}
 			  }
@@ -443,14 +442,15 @@ function file_upload(){
 function xy_test(){
 
 echo'<br/><br/>'."这里是测试使用".'<br/><br/><br/>';
-echo '<script type="text/javascript"  >
-	function xy_print()
-	{
-		alert("Hello World!");
-	}
-	</script>';
-	echo '<input type="button" value="Click me!" onclick="xy_print()" >';
-	echo "<br />";
+wp_register_script('myScript', dirname(__FILE__)."/xy_album.js");
+//<script language='javascript' type='text/javascript' src='/xy_album.js' ></script>
+?>
+
+
+	<!<input type="button" value="Click me!" onclick="xy_print()" >
+	<br />
+<?php
+wp_enqueue_script('myScript');
 }
 
 /**
@@ -466,4 +466,127 @@ function action_xy_test(){
 }
 
 
+/**
+* 功能:相册管理，首先是展示每个相册，以相册封面的形式展示，封面后面包括相册编辑和相册查看
+* 作者:周永飞
+* 输入参数：void
+* 输出参数：void
+* 日期:
+*/
+
+function show_album_manage(){
+	global $wpdb;
+	$table2album = $wpdb->prefix . "xy_album";
+	$albums =  $wpdb->get_results( "SELECT * FROM $table2album");
+	//time_nanosleep(0,500);  让脚本等待时间执行
+	foreach($albums as $album){
+	//echo $album_cover->album_cover;
+?>
+		<br />
+		<br />
+		编辑相册:<?php echo $album->album_name?>,
+		<a href="admin.php?page=<?php echo XY_ALBUM_DIR;?>/admin/xy_album_admin.php&amp;show_photo_manager=true&amp;select_album=<?php echo $album->album_ID?>">查看相册
+		<br />
+		<br />
+		<img src="<?php echo $album->album_cover?>" alt="不能显示"/> 
+		<br />
+		<br />		
+		
+		</a>
+
+<form action= "admin.php?page=<?php echo XY_ALBUM_DIR?>/admin/xy_album_admin.php&amp;action_update_album=true&amp;show_album_manager=true" id="form_create_album" method="post" enctype="multipart/form-data"/>
+    	
+     	相册名称：<input type="text" name="album_name" id="form_album_name" size="26" value="<?php echo $album->album_name ?>"/>
+     	<br />
+     	相册描述：<input type="text" name="album_desc" id="form_album_desc" size="26" value="<?php echo $album->album_intro ?>" />
+     	<br />
+     	<input type="hidden" name="album_id" id="form_album_id"  value="<?php echo $album->album_ID ?>" />
+     	<br />
+     	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="submit" value="修改" id="form_upload_submit" />
+     	<input type="reset" value="重置" id="form_upload_reset" />
+    	
+</form>		
+
+<?php
+	}
+}
+
+/**
+* 功能:对相册信息进行更新
+* 作者:周永飞
+* 输入参数：void
+* 输出参数：void
+* 日期:
+*/
+
+function xy_update_album(){
+	
+	  ($_POST['album_desc']=="")? $album_desc = "这家伙很懒，什么也没有留下":$album_desc = $_POST['album_desc'];
+	  
+	  global $wpdb;
+	  $table2album = $wpdb->prefix . "xy_album";
+	  
+      $update = "update " . $table2album ." set album_name='" . $_POST['album_name'] . "',album_intro='". $album_desc ."' where album_ID=".$_POST['album_id'].";";
+      $results = $wpdb->query( $update);
+      echo'<br/>';
+      echo '更新相册'.'<strong style="color:#ff0000;">“'.$_POST['album_name'].'”</strong>:'.'成功';
+}
+
+/**
+* 功能:对相册下的照片进行展示
+* 作者:周永飞
+* 输入参数：void
+* 输出参数：void
+* 日期:
+*/
+
+function show_photo_manage(){
+	//echo $_GET['select_album'];
+	$select_album = $_GET['select_album'];
+	global $wpdb;
+	$table2photo = $wpdb->prefix . "xy_photo";
+	$photos =  $wpdb->get_results( "SELECT * FROM $table2photo where photo_album=$select_album ");
+	//time_nanosleep(0,500);  让脚本等待时间执行
+	echo '<br/><br/>编辑相片:';
+	foreach($photos as $photo){
+	//echo $photo->photo_thumb_url;
+?>
+		<br />
+		<br />
+		<img src="<?php echo $photo->photo_thumb_url?>" alt="不能显示"/> 
+		<br />
+		<br />		
+		</a>
+
+<form action= "admin.php?page=<?php echo XY_ALBUM_DIR?>/admin/xy_album_admin.php&amp;action_update_album=true&amp;show_album_manager=true" id="form_create_album" method="post" enctype="multipart/form-data"/>
+    	<input type="checkbox" name="set_cover" value="0" style="cursor:hand"><a onclick="selectcheckbox()" style="cursor:hand">设为封面</a>
+    	<input type="checkbox" name="del_photo" value="0" style="cursor:hand"><a onclick="selectcheckbox()" style="cursor:hand">删除照片</a>
+    	<br />
+    	<br />
+     	相册介绍：<input type="text" name="photo_desc" id="form_photo_desc" size="26" value="<?php echo $photo->photo_intro ?>"/>
+     	<br />
+     	相册标签：<input type="text" name="photo_tags" id="form_photo_tags" size="26" value="<?php echo $photo->photo_tag ?>" />
+     	<br />
+     	<input type="hidden" name="photo_id" id="form_photo_id"  value="<?php echo $photo->photo_ID ?>" />
+
+    移动到:&nbsp&nbsp&nbsp&nbsp&nbsp<select size=1 name="select_album">
+		<option selected>选择相册
+		<?php
+			$table2album = $wpdb->prefix . "xy_album";
+			$album_names =  $wpdb->get_results( "SELECT album_name FROM $table2album" ); 
+			foreach($album_names as $album_name){
+			echo '<option>'.$album_name->album_name;
+			}
+		?>
+	</select>
+	<br/>
+	<br />
+     	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="submit" value="修改" id="form_upload_submit" />
+     	<input type="reset" value="重置" id="form_upload_reset" />
+    	
+</form>	
+
+<?php
+	}
+}
 ?>
