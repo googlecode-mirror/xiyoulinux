@@ -98,6 +98,18 @@ function xy_create_album()
 */
 
 function create_album(){
+
+	global $wpdb;
+	$table2album = $wpdb->prefix . "xy_album";
+	$album_names =  $wpdb->get_results( "SELECT album_name FROM $table2album" ); 
+	foreach($album_names as $album_name){
+		if($album_name->album_name == $_POST['album_name']){
+			echo '<br />';
+			echo "相册 ‘".$_POST['album_name']."’ 已经存在，请重新创建..";
+			return;
+		}	
+	}
+	  
 	  if($_POST['album_name']=="请输入相册名"||$_POST['album_name']==""){
 	  	echo'<br />';
 	  	echo'<strong style="color:#ff0000;">创建失败</strong>:'	;
@@ -190,7 +202,7 @@ echo '<br />';
 if($results==0){
 ?>
 <strong style='color:#ff0000;'><?php _e( 'WARNING', $xy_text_domain ); ?></strong>: <?php _e( '还没有相册', $xy_text_domain ); ?>:	
-<a href="admin.php?page=<?php echo XY_ALBUM_DIR?>/admin/xy_album_admin.php&amp;allow_create_album=true">创建相册</a>s
+<a href="admin.php?page=<?php echo XY_ALBUM_DIR?>/admin/xy_album_admin.php&amp;allow_create_album=true">创建相册</a>
 <?php	
 }
 ?>
@@ -351,13 +363,13 @@ function file_upload(){
 	$i=0;
 	foreach($_POST['desc'] as $array)
 	{
-		$array==""?$img_desc[$i] = "这家伙很懒，什么也没有留下": $img_desc[$i] = $array;
+		($array==""||$array=="请输入描述信息")?$img_desc[$i] = "这家伙很懒，什么也没有留下": $img_desc[$i] = $array;
 		$i++;
 	}
 	$i=0;
 	foreach($_POST['tag'] as $array)
 	{
-		$array==""?$img_tag[$i] = "": $img_tag[$i] = $array;
+		($array==""||$array=="请输入关键字")?$img_tag[$i] = "": $img_tag[$i] = $array;
 		$i++;
 	}
 	//foreach ($img_tag as $array)
@@ -478,9 +490,12 @@ function show_album_manage(){
 	global $wpdb;
 	$table2album = $wpdb->prefix . "xy_album";
 	$albums =  $wpdb->get_results( "SELECT * FROM $table2album");
+	if($wpdb->query("SELECT * from $table2album ")==0){
+	echo "<br /><br />";
+	echo '没有相册，请先<a href="admin.php?page='.XY_ALBUM_DIR.'/admin/xy_album_admin.php&amp;allow_create_album=true">创建相册</a>，上传照片';
+	}
 	//time_nanosleep(0,500);  让脚本等待时间执行
 	foreach($albums as $album){
-	//echo $album_cover->album_cover;
 ?>
 		<br />
 		<br />
@@ -541,12 +556,19 @@ function xy_update_album(){
 */
 
 function show_photo_manage(){
-	//echo $_GET['select_album'];
-	$select_album = $_GET['select_album'];
-	global $wpdb;
+
+	global $wpdb;	
 	$table2photo = $wpdb->prefix . "xy_photo";
-	$photos =  $wpdb->get_results( "SELECT * FROM $table2photo where photo_album=$select_album ");
+	$select_album = $_GET['select_album'];
+	
+	if($wpdb->query("SELECT * from $table2photo where photo_album=$select_album ")==0){
+	echo "<br /><br />";
+	echo '该相册中没有照片，请先<a href="admin.php?page='.XY_ALBUM_DIR.'/admin/xy_album_admin.php&amp;allow_file_loading=true">上传照片</a>';
+	}else{
+	
+	//echo $_GET['select_album'];
 	//time_nanosleep(0,500);  让脚本等待时间执行
+	$photos =  $wpdb->get_results( "SELECT * FROM $table2photo where photo_album=$select_album ");
 	echo '<br/><br/>编辑相片:';
 	foreach($photos as $photo){
 	//echo $photo->photo_thumb_url;
@@ -558,16 +580,19 @@ function show_photo_manage(){
 		<br />		
 		</a>
 
-<form action= "admin.php?page=<?php echo XY_ALBUM_DIR?>/admin/xy_album_admin.php&amp;action_update_album=true&amp;show_album_manager=true" id="form_create_album" method="post" enctype="multipart/form-data"/>
+<form action= "admin.php?page=<?php echo XY_ALBUM_DIR?>/admin/xy_album_admin.php&amp;action_update_photo=true&amp;show_album_manager=true" id="form_create_album" method="post" enctype="multipart/form-data"/>
     	<input type="checkbox" name="set_cover" value="0" style="cursor:hand"><a onclick="selectcheckbox()" style="cursor:hand">设为封面</a>
     	<input type="checkbox" name="del_photo" value="0" style="cursor:hand"><a onclick="selectcheckbox()" style="cursor:hand">删除照片</a>
     	<br />
     	<br />
-     	相册介绍：<input type="text" name="photo_desc" id="form_photo_desc" size="26" value="<?php echo $photo->photo_intro ?>"/>
+     	相片介绍：<input type="text" name="photo_desc" id="form_photo_desc" size="26" value="<?php echo $photo->photo_intro ?>"/>
      	<br />
-     	相册标签：<input type="text" name="photo_tags" id="form_photo_tags" size="26" value="<?php echo $photo->photo_tag ?>" />
+     	相片标签：<input type="text" name="photo_tags" id="form_photo_tags" size="26" value="<?php echo $photo->photo_tag ?>" />
      	<br />
      	<input type="hidden" name="photo_id" id="form_photo_id"  value="<?php echo $photo->photo_ID ?>" />
+     	<input type="hidden" name="photo_url" id="form_photo_url"  value="<?php echo $photo->photo_url ?>" />
+     	<input type="hidden" name="photo_thumb_url" id="form_photo_thumb_url"  value="<?php echo $photo->photo_thumb_url ?>" />
+     	<input type="hidden" name="photo_album" id="form_photo_album"  value="<?php echo $photo->photo_album ?>" />
 
     移动到:&nbsp&nbsp&nbsp&nbsp&nbsp<select size=1 name="select_album">
 		<option selected>选择相册
@@ -588,5 +613,51 @@ function show_photo_manage(){
 
 <?php
 	}
+	}
+}
+
+/**
+* 功能:对选中照片信息进行修改
+* 作者:周永飞
+* 输入参数：void
+* 输出参数：void
+* 日期:
+*/
+
+function xy_update_photo(){
+
+	global $wpdb;
+	$table2album = $wpdb->prefix . "xy_album";
+	$table2photo = $wpdb->prefix . "xy_photo";
+	if($_POST['select_album']=="选择相册") {$select_album_ID=$_POST['photo_album'];}
+	else{
+		$select_album = $_POST['select_album'];
+		$album_IDs =  $wpdb->get_results( "SELECT album_ID FROM $table2album where album_name = '$select_album'" ); 
+		foreach($album_IDs as $album_ID){
+			$select_album_ID =  $album_ID->album_ID;
+		}
+	}
+	//设置封面
+	if($_POST['set_cover'] == "0") {
+		$update = "update " . $table2album ." set album_cover='" . $_POST['photo_url'] . "' where album_ID=".$_POST['photo_album'].";";
+     	$results = $wpdb->query( $update);
+	}
+	//删除文件，目前实现的只是在数据库中删除记录
+	if($_POST['del_photo']== "0"){
+		//在这里需要改进，如果删除了相册封面，需要重新设置封面为默认值
+		$delete = "DELETE FROM ". $table2photo ." WHERE photo_ID=".$_POST['photo_id'].";";
+		$wpdb->query($delete);
+		//unlink($_POST['photo_url']);
+		//unlink($_POST['photo_thumb_url']);
+		//DeleteFile($_POST['photo_url']);
+		//DeleteFile($_POST['photo_thumb_url']);
+	}
+	
+	
+	  ($_POST['photo_desc']=="")? $photo_desc = "这家伙很懒，什么也没有留下":$photo_desc = $_POST['photo_desc'];
+      $update = "update " . $table2photo ." set photo_intro='" . $photo_desc . "',photo_tag='". $_POST['photo_tags'] ."',photo_album='". $select_album_ID."' where photo_ID='".$_POST['photo_id']."';";
+      $results = $wpdb->query( $update);
+      echo'<br/>';
+      //echo '更新相册'.'<strong style="color:#ff0000;">“'.$_POST['album_name'].'”</strong>:'.'成功';
 }
 ?>

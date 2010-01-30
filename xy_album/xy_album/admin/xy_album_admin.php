@@ -91,6 +91,9 @@ function xy_build_admin_form() {
                 if($_GET['action_update_album']==true){
 				xy_update_album();
 				}
+                if($_GET['action_update_photo']==true){
+				xy_update_photo();
+				}
                 if($_GET['show_album_manager']==true){
 				show_album_manage();
 				}
