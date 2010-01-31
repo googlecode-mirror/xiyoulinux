@@ -55,7 +55,7 @@ function xy_build_admin_form() {
                   ?>
                             <div>
                             <br />
-                              <strong style='color:#ff0000;'><?php _e( 'WARNING', $xy_text_domain ); ?></strong>: <?php _e( 'The specified gallery folder does not exist', $xy_text_domain ); ?>:
+                              <strong style='color:#ff0000;'><?php _e( 'WARNING', $xy_text_domain ); ?></strong>: <?php _e( '不存在这样的存放相片的目录', $xy_text_domain ); ?>:
                               <code><?php _e(get_option('gallery_folder'), $xy_text_domain); ?></code><br />                   
 								<a href="admin.php?page=<?php echo XY_ALBUM_DIR?>/admin/xy_album_admin.php&amp;create_folder=<?php echo get_option('gallery_folder') ?>">为我创建这个目录</a>                             
                             </div>

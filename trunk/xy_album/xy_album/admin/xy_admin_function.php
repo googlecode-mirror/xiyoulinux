@@ -252,10 +252,11 @@ function addimg(){
 	 //obj.options.length=0;
 	 var obj=document.getElementById('album_select');
 	 //obj.options.length=0;
-	 obj.options.add(new Option("选择相册","2"));
-	 obj.options.add(new Option("我","1"));
+	 obj.options[0]= new Option("first option", "1" );//.add(new Option("选择相册","2"));
+	 obj.options[1]= new Option("second option", "2" );
+	 //obj.options.add(new Option("我","1"));
 	 //options[2]=obj.options.add(new Option("我","1"));
-	 //div.appendChild(obj);*/
+	 div.appendChild(obj);*/
 	 
 	 
 	 
@@ -386,7 +387,7 @@ function file_upload(){
 	foreach($album_IDs as $album_ID){
 		$select_album_ID =  $album_ID->album_ID;
 	}
-	
+	echo "正在上传中，请稍等...";
 	for($j=0;$j<$i;$j++)
 	{
                 $no = $j+1;
@@ -445,8 +446,8 @@ function file_upload(){
 /**
 * 功能:这个函数用来测试使用
 * 作者:周永飞
-* 输入参数：文件名
-* 输出参数：文件后缀名
+* 输入参数：
+* 输出参数：
 * 日期:2009-01-26 00:48
 */
 
@@ -629,6 +630,37 @@ function xy_update_photo(){
 	global $wpdb;
 	$table2album = $wpdb->prefix . "xy_album";
 	$table2photo = $wpdb->prefix . "xy_photo";
+	$update_album = $_POST['photo_album'];
+	$album_covers = $wpdb->get_results("select album_cover from $table2album where album_ID=$update_album");
+	foreach($album_covers as $album_cover)
+		$current_cover=$album_cover->album_cover;
+	
+	//删除文件，目前实现的只是在数据库中删除记录
+	if($_POST['del_photo']== "0"){
+	
+		//如果删除了相册封面，需要重新设置封面为默认封面
+
+		if($current_cover==$_POST['photo_url']){
+			$update = "update " . $table2album ." set album_cover='" .WP_PLUGIN_URL."/xy_album_".XY_ALBUM_VERSION."/default_cover.jpg"."' where album_ID=".$_POST['photo_album'].";";
+			$wpdb->query( $update);
+		}
+			
+		$delete = "DELETE FROM ". $table2photo ." WHERE photo_ID=".$_POST['photo_id'].";";
+		$wpdb->query($delete);
+		
+		$imgurl = $_POST['photo_url'];
+		$thumburl = $_POST['photo_thumb_url'];
+		unlink(WP_CONTENT_DIR."/xy-album/".get_file_name($imgurl));
+		unlink(WP_CONTENT_DIR."/xy-album/thumbs/".get_file_name($thumburl));
+		return ;
+	}
+	
+	if($_POST['set_cover'] == "0") {
+		
+		$update = "update " . $table2album ." set album_cover='" . $_POST['photo_url'] . "' where album_ID=".$_POST['photo_album'].";";
+     	$results = $wpdb->query( $update);
+	}
+
 	if($_POST['select_album']=="选择相册") {$select_album_ID=$_POST['photo_album'];}
 	else{
 		$select_album = $_POST['select_album'];
@@ -636,28 +668,31 @@ function xy_update_photo(){
 		foreach($album_IDs as $album_ID){
 			$select_album_ID =  $album_ID->album_ID;
 		}
-	}
-	//设置封面
-	if($_POST['set_cover'] == "0") {
-		$update = "update " . $table2album ." set album_cover='" . $_POST['photo_url'] . "' where album_ID=".$_POST['photo_album'].";";
-     	$results = $wpdb->query( $update);
-	}
-	//删除文件，目前实现的只是在数据库中删除记录
-	if($_POST['del_photo']== "0"){
-		//在这里需要改进，如果删除了相册封面，需要重新设置封面为默认值
-		$delete = "DELETE FROM ". $table2photo ." WHERE photo_ID=".$_POST['photo_id'].";";
-		$wpdb->query($delete);
-		//unlink($_POST['photo_url']);
-		//unlink($_POST['photo_thumb_url']);
-		//DeleteFile($_POST['photo_url']);
-		//DeleteFile($_POST['photo_thumb_url']);
-	}
+	}	
 	
+	//如果跟新照片到不同的相册但是该相片是当前相册的封面，那么更新之前相册的封面到默认封面
+	if(($current_cover==$_POST['photo_url'])&&(($_POST['photo_album']!=$select_album_ID)||($_POST['select_album']!="选择相册"))) {
+		$update = "update " . $table2album ." set album_cover='" .WP_PLUGIN_URL."/xy_album_".XY_ALBUM_VERSION."/default_cover.jpg"."' where album_ID=".$_POST['photo_album'].";";
+		$wpdb->query( $update);
+	}
 	
 	  ($_POST['photo_desc']=="")? $photo_desc = "这家伙很懒，什么也没有留下":$photo_desc = $_POST['photo_desc'];
       $update = "update " . $table2photo ." set photo_intro='" . $photo_desc . "',photo_tag='". $_POST['photo_tags'] ."',photo_album='". $select_album_ID."' where photo_ID='".$_POST['photo_id']."';";
       $results = $wpdb->query( $update);
       echo'<br/>';
       //echo '更新相册'.'<strong style="color:#ff0000;">“'.$_POST['album_name'].'”</strong>:'.'成功';
+}
+
+/**
+* 功能:得到照片的名称
+* 作者:周永飞
+* 输入参数：照片的url
+* 输出参数：文件名
+* 日期:2009-01-26 00:48
+*/
+function get_file_name($filestr){
+    $gonten= explode('/',$filestr);  	//用点号分隔文件名到数组
+    $gonten = array_reverse($gonten);  //把上面数组倒序
+    return $gonten[0]; 					//返回倒序数组的第一个值
 }
 ?>
