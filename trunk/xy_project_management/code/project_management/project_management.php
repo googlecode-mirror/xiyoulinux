@@ -85,7 +85,13 @@ function fn_project_index()
 //add
 function fn_project_add()
 {
-	include('../wp-content/plugins/project_management/project_add.php');
+	include('project_add.php');
+}
+
+//edit
+function fn_project_edit()
+{
+	include('project_edit.php');
 }
 
 // 在控制面板中添加控件
@@ -95,6 +101,7 @@ function project_dashboard_install() {
 	}
 	if (function_exists('add_submenu_page')) {
 		add_submenu_page('project', '添加项目', '添加项目', 8, 'project_add', 'fn_project_add');
+		add_submenu_page('project', '', '', 8, 'project_edit', 'fn_project_edit');
 	}
 }
 
