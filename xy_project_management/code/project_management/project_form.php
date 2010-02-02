@@ -1,5 +1,4 @@
 <div id="poststuff" class="metabox-holder<?php echo 2 == $screen_layout_columns ? ' has-right-sidebar' : ''; ?>">
-	<?php $row=$row;?>
 	<div id="post-body">
 		<div id="post-body-content">
 			<div class="stuffbox">
