@@ -38,8 +38,8 @@
 				<h3><label><?php echo "项目图片" ?></label></h3>
 				<div class="inside">
 					<input type="file" name="file" size="30" style="width:300px;" tabindex="1" id="img" onChange="reflush()"/>
-					<input type="hidden" name="project_pic" value="<?php echo isset($row) ? esc_attr($row->project_pic) : ''; ?>"/>
-					预览：<img id="photo" src="<?php echo isset($row) ? esc_attr($row->project_pic) : ''; ?>"/>
+					<input type="hidden" name="project_pic" value="<?php echo isset($row) ? esc_attr($row->project_pic) : 'vvv'; ?>"/>
+					<img id="photo" src="<?php echo isset($row) ? esc_attr($row->project_pic) : 'vvv'; ?>"/>
 				</div>
 			</div>
 			
