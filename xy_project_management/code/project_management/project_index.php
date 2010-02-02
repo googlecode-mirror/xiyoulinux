@@ -1,5 +1,5 @@
 <?php include("project_function.php")?>
-<script type="text/javascript" src="../wp-content/plugins/project/project_javascript.js"></script>
+<script type="text/javascript" src="project_javascript.js"></script>
 <div class="wrap">
 	<?php screen_icon(); ?>
 	<h2><?php echo "项目管理" ?>&nbsp;<a href="admin.php?page=project_add" class="button add-new-h2"><?php echo "添加项目" ?></a></h2>

@@ -78,7 +78,8 @@ register_activation_hook(__FILE__, 'project_install');
 //index
 function fn_project_index()
 {
-	include('../wp-content/plugins/project_management/project_index.php');
+	include('project_index.php');
+	//include('project_config.php');
 }
 
 //add
