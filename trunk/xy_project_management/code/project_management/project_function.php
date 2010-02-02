@@ -108,7 +108,9 @@
 	function project_remove($project_id)
 	{
 		global $wpdb;
-		$wpdb->query("DELETE FROM xy_project WHERE project_id = $project_id");
+		$table_name = 'xy_project';
+		
+		$wpdb->query("DELETE FROM " . $table_name . " WHERE project_ID = $project_id");
 		echo "<div id='message' class='updated fade'><p><strong>己删除</strong></p></div>";
 	}
 ?>
@@ -117,7 +119,10 @@
 	function project_edit($project_id, $post, $file)
 	{
 		global $wpdb;
-		$row=array_chunk($post,11,true);//分割$_POST数组,
+		$table_name = 'xy_project';
+		
+		//分割$_POST数组,
+		$row=array_chunk($post,11,true);
 		$row=$row[0];
 		if($file["file"]["name"]!="")
 		{
@@ -126,7 +131,7 @@
 				$row["project_pic"]="project_images/".$file['file']['name'];
 			}
 		}
-		$wpdb->update('xy_project',$row, array('project_ID'=>$project_id));
+		$wpdb->update($table_name, $row, array('project_ID' => $project_id));
 		echo "<div id='message' class='updated fade'><p><strong>己修改</strong></p></div>";
 	}
 ?>
@@ -135,7 +140,8 @@
 	function project_add($post, $file)
 	{
 		global $wpdb;
-		$table_name = "xy_project";
+		$table_name = 'xy_project';
+		
 		//分割$_POST数组
 		//$row=array_chunk($post, 11, true);
 		//$row=$row[0];
@@ -148,11 +154,10 @@
 					'project_intro' => $post['project_intro'],
 					'project_pic' => $post['project_pic'],
 					'project_doc' => $post['project_doc'],
-					'project_url' => $post['project_url'],
+					'project_url' => "http://xiyoulinux.cn",
 					'project_auther_ID' => $post['project_auther_ID'],
 					'project_tag' => $post['project_tag']
 					);
-		foreach($row as i){ echo i;}
 		if($file["file"]["name"]!="")
 		{
 			if(move_uploaded_file($file['file']['tmp_name'],'../wp-content/plugins/project/project_images/'.$file['file']['name']))
