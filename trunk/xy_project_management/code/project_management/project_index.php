@@ -11,7 +11,7 @@
 					project_remove($_GET['project_id']);
 					break;
 				case "edit":
-					project_edit($_GET["project_id"],$_POST,$_FILES);
+					project_edit($_GET["project_id"], $_POST,$_FILES);
 					break;
 				case "all":
 					project_all($_POST);
@@ -51,7 +51,7 @@
 			</tbody>
 			<tfoot>
 				<tr>
-					<?php print_project_column(); ?>
+					<?php print_project_column2(); ?>
 				</tr>
 			</tfoot>
 		</table>
