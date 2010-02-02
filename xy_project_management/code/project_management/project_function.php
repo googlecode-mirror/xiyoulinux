@@ -3,7 +3,7 @@
 	{
 ?>
 		<select name="all">
-			<option value="-1" selected="selected">批量动作</option>
+			<option value="noaction" selected="selected">批量动作</option>
 			<option value="remove">删除</option>
 		</select>
 		<input type="submit" value="应用" name="doaction" id="doaction" class="button-secondary action" />
@@ -16,9 +16,10 @@
 	{
 ?>		<th width=""><input type="checkbox" name="chkAll" value="" onClick="check(this.form)">&nbsp;项目</th>
 		<th>管理者</th>
-		<th>标签</th>
+		<th>成员</th>
 		<th>开始日期</th>
 		<th>截止日期</th>
+		<th>标签</th>
 		<th>操作</th>
 <?php 
 	}
@@ -84,10 +85,11 @@
 				echo "<tr>
 						<td>"."&nbsp;<input type='checkbox' name='chk[]' id='chk' value=".$myrow['project_ID'].">&nbsp;".$myrow["project_name"]."</td>
 						<td>".$myrow["project_manager"]."</td>
-						<td>".$myrow["project_tag"]."</td>
+						<td>".$myrow["project_manager"]."</td>
 						<td>".$myrow["project_start_date"]."</td>
 						<td>".$myrow["project_finish_date"]."</td>
-						<td><a href='admin.php?page=project&show=edit&project_id=".$myrow["project_ID"]."'>编辑</a>|<a href='admin.php?page=project&action=remove&project_id=".$myrow["project_ID"]."'>删除</a></tr>";
+						<td>".$myrow["project_tag"]."</td>
+						<td><a href='admin.php?page=project_edit&project_id=".$myrow["project_ID"]."'>编辑</a>|<a href='admin.php?page=project&action=remove&project_id=".$myrow["project_ID"]."'>删除</a></tr>";
 			}
 			echo "<tr><td colspan='2'>";
 			if($Page>1)                         
@@ -208,11 +210,13 @@
 	function project_all($post)
 	{
 		global $wpdb;
+		$table_name = 'xy_project';
+		
 		if($post["all"]=="remove")
 		{
 			foreach($post['chk'] as $row)
 			{
-				$wpdb->query("DELETE FROM xy_project WHERE project_ID =$row");	
+				$wpdb->query("DELETE FROM " . $table_name. " WHERE project_ID = $row");
 				echo "<div id='message' class='updated fade'><p><strong>项目己删除</strong></p></div>";			
 			}
 		}

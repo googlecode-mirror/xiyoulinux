@@ -1,0 +1,3 @@
+<?php include('project_function.php')?>
+<script type="text/javascript" src="project_javascript.js"></script>
+//TODO for beforework...
