@@ -116,32 +116,8 @@
 ?>
 
 <?php
-	function project_edit($project_id, $post, $file)
+	function project_check($post, $file)
 	{
-		global $wpdb;
-		$table_name = 'xy_project';
-		
-		//分割$_POST数组,
-		$row=array_chunk($post,11,true);
-		$row=$row[0];
-		if($file["file"]["name"]!="")
-		{
-			if(move_uploaded_file($_FILES['file']['tmp_name'],"../wp-content/plugins/project/project_images/".$file['file']['name']))
-			{
-				$row["project_pic"]="project_images/".$file['file']['name'];
-			}
-		}
-		$wpdb->update($table_name, $row, array('project_ID' => $project_id));
-		echo "<div id='message' class='updated fade'><p><strong>己修改</strong></p></div>";
-	}
-?>
-
-<?php 
-	function project_add($post, $file)
-	{
-		global $wpdb;
-		$table_name = 'xy_project';
-		
 		//验证
 		if(!checkdate($post['project_start_date']))
 		{
@@ -181,6 +157,30 @@
 					'project_auther_ID' => $post['project_auther_ID'],
 					'project_tag' => $post['project_tag']
 					);
+		return $row;
+	}
+?>
+
+<?php
+	function project_edit($project_id, $post, $file)
+	{
+		global $wpdb;
+		$table_name = 'xy_project';
+		
+		$row = project_check($post, $file);
+		
+		$wpdb->update($table_name, $row, array('project_ID' => $project_id));
+		echo "<div id='message' class='updated fade'><p><strong>己修改</strong></p></div>";
+	}
+?>
+
+<?php 
+	function project_add($post, $file)
+	{
+		global $wpdb;
+		$table_name = 'xy_project';
+		
+		$row = project_check($post, $file);
 
 		$wpdb->insert("xy_project", $row);
 		/*
