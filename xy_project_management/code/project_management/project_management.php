@@ -1,10 +1,10 @@
 <?php
 /*
-Plugin Name: project_management
+Plugin Name: Project Management
 Plugin URI: http://www.xiyoulinux.cn/
 Description: 项目管理
 Version: 0.1
-Author: SK
+Author: SK, LUCIEN
 Author URI: http://www.xiyoulinux.cn/
 */
 
@@ -16,7 +16,7 @@ function project_install() {
 	global $wpdb;
 	global $project_db_version;
 	
-	$table_name = $wpdb->prefix . "project";
+	$table_name = "xy_project";
 	if($wpdb->get_var("SHOW TABLES LIKE '$table_name'") != $table_name) {
 		$install_sql = "CREATE TABLE " . $table_name . " (
 				project_ID bigint(20) unsigned NOT NULL AUTO_INCREMENT,
@@ -25,7 +25,7 @@ function project_install() {
 				project_member varchar(255) DEFAULT NULL,
 				project_start_date date DEFAULT NULL,
 				project_finish_date date DEFAULT NULL,
-				project_info text,
+				project_intro text,
 				project_pic varchar(255) DEFAULT NULL,
 				project_doc varchar(255) DEFAULT NULL,
 				project_url varchar(255) DEFAULT NULL,
@@ -34,18 +34,41 @@ function project_install() {
 				PRIMARY KEY(project_ID)
 				) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
 		
-		//导入数据库操作文件		
+		//导入数据库操作文件
 		require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 		dbDelta($install_sql);
-	
-		$project_name = "SK";
+	    
+	    //for init...
+		$project_name = "Project Management";
 		$project_manager = "SK";
-		$project_info = "project_management";
+		$project_member = "lucien, zhaogejuan, liuzhouping";
+		$project_start_date = "2010-1-1";
+		$project_finish_date = "2010-2-15";
+		$project_intro = "manage linux group's project";
+		$project_pic = "Project Management";
+		$project_doc = "http://xiyoulinux.cn";
+		$project_url = "http://xiyoulinux.cn";
+		$project_auther_ID = 1;
+		$project_tag = "project";
+		
+		$init_array = array('project_name' => $project_name, 
+						'project_manager' => $project_manager,
+						'project_member' => $project_member,
+						'project_start_date' => $project_start_date,
+						'project_finish_date' => $project_finish_date,
+						'project_intro' => $project_intro,
+						'project_pic' => $project_pic,
+						'project_doc' => $project_doc,
+						'project_url' => $project_url,
+						'project_auther_ID' => $project_auther_ID,
+						'project_tag' => $project_tag
+						);
 
-		$insert_sql = "INSERT INTO " . $table_name . " (project_name, project_manager, project_info) " .
-            "VALUES ('" . $project_name . "','" . $wpdb->escape($project_manager) . "','" . $wpdb->escape($project_info) . "')";
+		$wpdb->insert('xy_project', $init_array);
 
-		$results = $wpdb->query( $insert_sql );
+		//$insert_sql = "INSERT INTO " . $table_name . " (project_name, project_manager, project_info) " . "VALUES ('" . $project_name . "','" . $wpdb->escape($project_manager) . "','" . $wpdb->escape($project_info) . "')";
+		
+		//$results = $wpdb->query( $insert_sql );
 	}
 }
 
