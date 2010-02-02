@@ -64,7 +64,7 @@ function project_install() {
 						'project_tag' => $project_tag
 						);
 
-		$wpdb->insert('xy_project', $init_array);
+		$wpdb->insert($table_name, $init_array);
 
 		//$insert_sql = "INSERT INTO " . $table_name . " (project_name, project_manager, project_info) " . "VALUES ('" . $project_name . "','" . $wpdb->escape($project_manager) . "','" . $wpdb->escape($project_info) . "')";
 		
