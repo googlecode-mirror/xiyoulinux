@@ -38,13 +38,13 @@ function xy_build_admin_form() {
     
     <div class="wrap">
  	
-    		<div id="icon-options-general" class="icon32"><br /></div><h2>西邮 linux相册管理  <?php echo XY_ALBUM_VERSION?></h2></div>
+    		<div id="icon-upload" class="icon32"><br /></div><h2>西邮 linux相册管理  <?php echo XY_ALBUM_VERSION?></h2></div>
 
           <!-- Main Gallery Options -->
             
             <br />
               <tr>
-                <th><label for="gallery_folder"><?php _e('你的相册路径：', $xy_text_domain); ?></label></th>
+                <th><label for="gallery_folder">&nbsp<?php _e('你的相册路径：', $xy_text_domain); ?></label></th>
                 <td>
                   <?php
                     $xy_gallery_folder = get_option('gallery_folder');												
@@ -66,52 +66,11 @@ function xy_build_admin_form() {
               </tr> 
               <br />
               
-				<h4 /><a href="admin.php?page=<?php echo XY_ALBUM_DIR?>/admin/xy_album_admin.php&amp;allow_create_album=true"><?php _e('创建相册', $xy_test); ?></a>
-				<?php
-				if($_GET['allow_create_album']==true){
-				xy_create_album();
-				}
-				if($_GET['action_create_album']==true){
-				create_album();
-				}
-                ?>              
-			 <br />
-                <h4 /><a href="admin.php?page=<?php echo XY_ALBUM_DIR?>/admin/xy_album_admin.php&amp;allow_file_loading=true"><?php _e('照片上传', $xy_test); ?></a>
-                <?php
-                if($_GET['allow_file_loading']==true){
-				xy_file_load();
-				}
-				if($_GET['action_file_upload']==true){
-				file_upload();
-				}?>
-
-              <br />
-                <h4 /><a href="admin.php?page=<?php echo XY_ALBUM_DIR?>/admin/xy_album_admin.php&amp;show_album_manager=true"><?php _e('照片管理', $xy_text_domain); ?></a>
-                <?php
-                if($_GET['action_update_album']==true){
-				xy_update_album();
-				}
-                if($_GET['action_update_photo']==true){
-				xy_update_photo();
-				}
-                if($_GET['show_album_manager']==true){
-				show_album_manage();
-				}
-                if($_GET['show_photo_manager']==true){
-				show_photo_manage();
-				}
-                ?>
-                <!--测试页面-->
-                <h4 /><a href="admin.php?page=<?php echo XY_ALBUM_DIR?>/admin/xy_album_admin.php&amp;allow_test=true"><?php _e('测试用例', $xy_text_domain); ?></a>
-                <?php
-                if($_GET['allow_test']==true){
-				xy_test();
-				}
-				if($_GET['action_allow_test']==true){
-				action_xy_test();
-				}
-                ?>
-           
+    <div class="wrap">
+    	<h4>欢迎使用西邮linux相册管理后台，在这里您可以：&nbsp&nbsp&nbsp&nbsp&nbsp<a href="admin.php?page=<?php echo XY_ALBUM_DIR?>/admin/xy_create_album.php">创建相册</a>           
+                <a href="admin.php?page=<?php echo XY_ALBUM_DIR?>/admin/xy_upload_photo.php">上传照片</a>
+                <a href="admin.php?page=<?php echo XY_ALBUM_DIR?>/admin/xy_album_manage.php">管理相册</a>
+     </div>      
     <?php
     
     } else { ?>
@@ -125,10 +84,7 @@ function xy_build_admin_form() {
   }
 }
 
-for($i=0;$i<8;$i++){
-	echo'<br />';
-}
-echo '<h1>继续开发中，敬请期待...<h1>'
+
 ?>
 
 
