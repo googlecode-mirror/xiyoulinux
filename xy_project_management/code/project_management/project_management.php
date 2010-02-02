@@ -52,13 +52,25 @@ function project_install() {
 //当激活插件时执行，添加数据库
 register_activation_hook(__FILE__, 'project_install');
 
+//index
+function fn_project_index()
+{
+	include('../wp-content/plugins/project_management/project_index.php');
+}
+
+//add
+function fn_project_add()
+{
+	include('../wp-content/plugins/project_management/project_add.php');
+}
+
 // 在控制面板中添加控件
 function project_dashboard_install() {
 	if (function_exists('add_menu_page')) {
-		add_menu_page('项目管理', '项目管理', 8, 'project_handle', 'project_index');
+		add_menu_page('项目管理', '项目管理', 8, 'project', 'fn_project_index');
 	}
 	if (function_exists('add_submenu_page')) {
-		add_submenu_page('project_handle', '添加项目', '添加项目', 8, 'project_add_handle', 'project_add');
+		add_submenu_page('project', '添加项目', '添加项目', 8, 'project_add', 'fn_project_add');
 	}
 }
 
