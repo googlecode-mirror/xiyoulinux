@@ -28,23 +28,6 @@ Author URI: http://blog.chinaunix.net/u3/104183/
 include_once( $plugin_dir . 'xy_album_config.php');
 
 
-/**
-* 功能:添加菜单
-* 作者:周永飞
-* 输入参数：void
-* 输出参数：void
-* 日期:
-*/
-function xy_add_feedburner_options_page() {
-if (function_exists('add_menu_page')) {
-$file=dirname(__FILE__)."/admin/xy_album_admin.php";
-add_menu_page('xy_album', 'xy_album', 8, $file );
-}
-}
-
-add_action('admin_menu', 'xy_add_feedburner_options_page'); 
-
-
 
 $xy_albumdb_version = "1.0";
 
@@ -96,6 +79,34 @@ function xy_album_install () {
 }
 
 register_activation_hook(__FILE__,'xy_album_install');  
+
+
+
+/**
+* 功能:添加菜单
+* 作者:周永飞
+* 输入参数：void
+* 输出参数：void
+* 日期:
+*/
+function xy_add_feedburner_options_page() {
+
+	$file1=dirname(__FILE__)."/admin/xy_album_admin.php";
+	$file2=dirname(__FILE__)."/admin/xy_create_album.php";
+	$file3=dirname(__FILE__)."/admin/xy_upload_photo.php";
+	$file4=dirname(__FILE__)."/admin/xy_album_manage.php";
+	if (function_exists('add_menu_page')) {	
+	add_menu_page('西邮相册', '西邮相册', 8, $file1 );
+	}
+	if (function_exists('add_submenu_page')) {
+		add_submenu_page($file1, "创建相册", '创建相册', 9,$file2);
+		add_submenu_page($file1, "照片上传", '照片上传', 9,$file3);
+		add_submenu_page($file1, "相册管理", '相册管理', 9,$file4);
+	}
+}
+
+add_action('admin_menu', 'xy_add_feedburner_options_page'); 
+
 
 
 ?>
