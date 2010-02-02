@@ -3,7 +3,7 @@
 Plugin Name: Project Management
 Plugin URI: http://www.xiyoulinux.cn/
 Description: 项目管理
-Version: 0.1
+Version: 0.2
 Author: SK, LUCIEN
 Author URI: http://www.xiyoulinux.cn/
 */
