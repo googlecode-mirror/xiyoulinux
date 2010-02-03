@@ -94,6 +94,12 @@ function fn_project_edit()
 	include('project_edit.php');
 }
 
+//api for test
+function fn_project_api()
+{
+	include('project_api.php');
+}
+
 // 在控制面板中添加控件
 function project_dashboard_install() {
 	if (function_exists('add_menu_page')) {
@@ -102,6 +108,7 @@ function project_dashboard_install() {
 	if (function_exists('add_submenu_page')) {
 		add_submenu_page('project', '添加项目', '添加项目', 8, 'project_add', 'fn_project_add');
 		add_submenu_page('project', '', '', 8, 'project_edit', 'fn_project_edit');
+		add_submenu_page('project', '', '', 8, 'project_api', 'fn_project_api');
 	}
 }
 
