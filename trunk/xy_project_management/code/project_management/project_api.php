@@ -102,6 +102,6 @@ class Project {
 
 $myproject = new Project(1);
 echo " test2";
-$myporject->testppp();
+$myporject->testppp();// 搞不懂为何无法调用？？？？
 echo "test4";
 ?>
