@@ -1,0 +1,21 @@
+.....xiyoulinux
+.....
+
+1...xiyoulinux......xiyoulinux_skins
+
+2.......mediawiki-1.15.0/skins...
+
+3........xiyoulinux_skins.......mediawiki-
+
+1.15.0/skins..........
+
+[root@localhost skins]# chmod 771 xiyoulinux
+
+[root@localhost skins]# chmod 664 xiyoulinux.*
+
+4.....
+.wiki.....——....——..——..xiyoulinux
+
+................
+
+
