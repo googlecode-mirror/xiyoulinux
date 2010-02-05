@@ -19,6 +19,8 @@
      
      参考：[http://xiyoulinux.cn/wiki/index.php?title=%E4%BD%BF%E7%94%A8%E5%B8%AE%E5%8A%A9 界面设置]
 
+已经制作完成，在本站可以下载安装
+
 
 2.研究Mediawiki的用户管理体系，保证整个网站的用户一次注册，在wiki中可以使用
      详细说明： 研究Mediawiki的用户管理体系，用php编写一个插件使得管理模块可以调用它，完成用的注册而使用wiki。
