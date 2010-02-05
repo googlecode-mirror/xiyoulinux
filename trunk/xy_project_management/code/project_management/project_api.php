@@ -3,7 +3,29 @@
  * File Name: project_api.php
  * Description:	项目API函数集
  */
+ 
+//include("project_function.php");
 
+// for project list
+function print_project_list() {
+	global $wpdb;
+	$table_name = 'xy_project';
+	
+	$select_sql = "SELECT project_ID FROM " . $table_name;
+	$results = $wpdb->get_results($select_sql);
+	
+	$project_list = array();
+
+	foreach($results as $itemp) {
+		echo $itemp->project_ID." ";
+		$myprojecttemp = new Project($itemp->project_ID);
+		array_push($project_list, $myprojecttemp);
+	}
+	//echo $project_list;
+}
+print_project_list();
+
+// for single project
 class Project {
 	private $project_name = "test";
 	private $project_manager = "test";
