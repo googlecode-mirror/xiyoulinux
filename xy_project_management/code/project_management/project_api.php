@@ -26,7 +26,7 @@ class Project {
 		$row = $wpdb->get_row($select_sql);
 		
 		$this->project_name = $row->project_name;
-		echo $this->project_name;
+		//echo $this->project_name;
 		$this->project_manager = $row->project_manager;
 		$this->project_member = $row->project_member;
 		$this->project_start_date = $row->project_start_date;
@@ -39,13 +39,8 @@ class Project {
 		$this->project_tag = $row->project_tag;
 	}
 	
-	public function testppp() {
-		echo "testppp";
-	}
-	
 	//显示项目名称
 	public function print_project_name() {
-		echo "test3";
 		echo $this->project_name;
 	}
 	//显示项目管理者
@@ -101,7 +96,5 @@ class Project {
 }
 
 $myproject = new Project(1);
-echo " test2";
-$myporject->testppp();// 搞不懂为何无法调用？？？？
-echo "test4";
+$myproject->print_project_name();
 ?>
