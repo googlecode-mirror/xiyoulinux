@@ -21,6 +21,9 @@
 
 已经制作完成，在本站可以下载安装
 
+效果，请看
+http://easyfly.org.cn/xiyouwiki/index.php?title=%E9%A6%96%E9%A1%B5
+
 
 2.研究Mediawiki的用户管理体系，保证整个网站的用户一次注册，在wiki中可以使用
      详细说明： 研究Mediawiki的用户管理体系，用php编写一个插件使得管理模块可以调用它，完成用的注册而使用wiki。
