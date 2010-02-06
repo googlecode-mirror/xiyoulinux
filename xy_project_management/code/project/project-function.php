@@ -20,11 +20,13 @@
 	function project_rows($get)
 	{
 		global $wpdb;
-		if(isset($_GET['Page']))
+		if (isset($_GET['Page']))
 		{
 			$Page=intval($_GET['Page']);
 		}
-		else{$Page=1;}
+		else {
+			$Page = 1;
+		}
 		$myrows = $wpdb->get_results("SELECT * FROM xy_project where project_tag like '%$get%'",ARRAY_A); 
 		$amount = count($myrows);;//总 条数
 		$page_size=10;//每页显示的条数
@@ -44,19 +46,23 @@
 		{
 		        $a=($Page-1)*$page_size;
 				$b=$page_size;
-		        $myrows = $wpdb->get_results("select * from xy_project where project_tag like '%$get%' order by project_id limit $a,$b",ARRAY_A);
+		        $myrows = $wpdb->get_results("select * from xy_project where project_tag 
+		        	like '%$get%' order by project_id limit $a,$b",ARRAY_A);
 		}
 		if($myrows=="")
 		{
 			echo"<tr><td colspan='3'>没有项目</td></tr>";
 		}else{
 			foreach ($myrows as $myrow) {
-				echo "<tr><td>"."&nbsp;<input type='checkbox' name='chk[]' id='chk' value=".$myrow['project_ID'].">&nbsp;".$myrow["project_name"]."</td>
+				echo "<tr><td>"."&nbsp;<input type='checkbox' name='chk[]' id='chk' value=".$myrow['project_ID'].">
+					&nbsp;".$myrow["project_name"]."</td>
 						<td>".$myrow["project_manager"]."</td>
 						<td>".$myrow["project_tag"]."</td>
 						<td>".$myrow["project_start_date"]."</td>
 						<td>".$myrow["project_finish_date"]."</td>
-						<td><a href='admin.php?page=project&show=edit&project_id=".$myrow["project_ID"]."'>编辑</a>|<a href='admin.php?page=project&action=remove&project_id=".$myrow["project_ID"]."'>删除</a></tr>";
+						<td><a href='admin.php?page=project&show=edit&project_id=".$myrow["project_ID"]."'>编辑</a>
+							<a href=".$myrow["project_url"].">| 详情</a>
+							<a href='admin.php?page=project&action=remove&project_id=".$myrow["project_ID"]."'>| 删除</a></tr>";
 			}
 			echo "<tr><td colspan='2'>";
 			if($Page>1)                         
