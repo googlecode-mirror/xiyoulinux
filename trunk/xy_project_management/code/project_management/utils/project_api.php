@@ -49,6 +49,7 @@ function get_project_list() {
 
 // for single project
 class Project {
+	private $project_id = "0";
 	private $project_name = "test";
 	private $project_manager = "test";
 	private $project_member = "test";
@@ -69,7 +70,8 @@ class Project {
 		
 		$select_sql = "SELECT * FROM " . $table_name . " WHERE project_ID = ".$id;
 		$row = $wpdb->get_row($select_sql);
-		
+		$this->project_id = $id;
+		//echo $this->project_id;
 		$this->project_name = $row->project_name;
 		//echo $this->project_name;
 		$this->project_manager = $row->project_manager;
@@ -84,7 +86,11 @@ class Project {
 		$this->project_auther_ID = $row->project_auther_ID;
 		$this->project_tag = $row->project_tag;
 	}
+	//显示项目ID
+	public function print_project_id() {
 	
+		echo $this->project_id;
+	}
 	//显示项目名称
 	public function print_project_name() {
 	
