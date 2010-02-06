@@ -7,7 +7,7 @@
 //include("project_function.php");
 
 // for print project's feed
-function print_feed($myfeed='http://code.google.com/feeds/p/xiyoulinux/updates/basic', $feedtitle='西邮Linux小组项目更新', $shownumber = '1'){
+function print_feed($myfeed='http://code.google.com/feeds/p/xiyoulinux/updates/basic', $feedtitle='西邮Linux小组网站更新', $shownumber = '3'){
 	require_once (ABSPATH . WPINC . '/rss-functions.php');
 	
 	$rss = @fetch_rss($myfeed);
@@ -28,7 +28,7 @@ function print_feed($myfeed='http://code.google.com/feeds/p/xiyoulinux/updates/b
 //print_feed();
 
 // for get project list
-function print_project_list() {
+function get_project_list() {
 	global $wpdb;
 	$table_name = 'xy_project';
 	
@@ -38,13 +38,14 @@ function print_project_list() {
 	$project_list = array();
 
 	foreach($results as $itemp) {
-		echo $itemp->project_ID." ";
+		//echo $itemp->project_ID." ";
 		$myprojecttemp = new Project($itemp->project_ID);
+		//$myprojecttemp->print_project_name();
 		array_push($project_list, $myprojecttemp);
 	}
 	return $project_list;
 }
-//print_project_list();
+//get_project_list();
 
 // for single project
 class Project {
@@ -131,7 +132,7 @@ class Project {
 	}
 	//显示项目更新
 	public function print_project_rss() {
-		echo $this->project_rss;
+		//echo $this->project_rss;
 		print_feed($this->project_rss, $this->project_name, 5);
 	}
 	//显示项目创建者
