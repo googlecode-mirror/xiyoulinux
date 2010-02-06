@@ -103,11 +103,18 @@ function fn_project_api()
 	include('utils/project_api.php');
 }
 
-//api for test
+//api for test show
 function fn_project_show()
 {
 	//echo "show";
 	include('frontstage/project_show.php');
+}
+
+//api for test list
+function fn_project_list()
+{
+	//echo "list";
+	include('frontstage/project_list.php');
 }
 
 // 在控制面板中添加控件
@@ -120,6 +127,7 @@ function project_dashboard_install() {
 		add_submenu_page('project', '', '', 8, 'project_edit', 'fn_project_edit');
 		add_submenu_page('project', '', '', 8, 'project_api', 'fn_project_api');
 		add_submenu_page('project', '', '', 8, 'project_show', 'fn_project_show');
+		add_submenu_page('project', '', '', 8, 'project_list', 'fn_project_list');
 		
 	}
 }
