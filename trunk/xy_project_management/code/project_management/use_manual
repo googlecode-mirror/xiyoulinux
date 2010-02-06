@@ -1,0 +1,7 @@
+演示方法：
+目前前台、后台、wp后台，均在wordpress内进行测试～
+
+wp后台：直接安装插件，点击左侧面板即可；
+前台：访问：http://localhost:8080/wordpress/wp-admin/admin.php?page=project_list，测试列表
+			访问：http://localhost:8080/wordpress/wp-admin/admin.php?page=project_show，测试单个项目
+后台：
