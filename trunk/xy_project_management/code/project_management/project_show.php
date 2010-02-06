@@ -3,30 +3,33 @@
  * File Name: project_show.php
  * Description:	项目前台展示
  */
+
 include('project_api.php');
 
 $myproject = new Project(1);
-//$myproject->print_project_name();
 
+$myproject->print_project_name();
+echo "<br/>";
+$myproject->print_project_manager();
+echo "<br/>";
+$myproject->print_project_member();
+echo "<br/>";
+$myproject->print_project_start_date();
+echo "<br/>";
+$myproject->print_project_finish_date();
+echo "<br/>";
+$myproject->print_project_intro();
+echo "<br/>";
+$myproject->print_project_pic();
+echo "<br/>";
+$myproject->print_project_doc();
+echo "<br/>";
+$myproject->print_project_url();
+echo "<br/>";
+$myproject->print_project_rss();
+echo "<br/>";
+$myproject->print_project_auther_ID();
+echo "<br/>";
+$myproject->print_project_tag();
 
-
-function get_myfeed($myfeed='http://code.google.com/feeds/p/xiyoulinux/updates/basic', $feedtitle='西邮Linux小组项目更新', $shownumber = '1'){
-	require_once (ABSPATH . WPINC . '/rss-functions.php');
-	
-	$rss = @fetch_rss($myfeed);
-	if(isset($rss->items) && 0 != count($rss->items)) {
-		echo '<h3>' . $feedtitle . '</h3><ul>';
-		$rss->items = array_slice($rss->items, 0, $shownumber);
-		foreach ($rss->items as $item ) {
-			$title = wp_specialchars($item['title']);
-			$url = wp_filter_kses($item['link']);
-			//echo $title;
-			//echo $url;
-			//echo "<li><a href=$url>$title</a></li>";
-			echo $item['description'];
-		}
-	}
-	echo "</ul>";
-}
 ?>
-<?php get_myfeed(); ?>
