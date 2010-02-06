@@ -81,32 +81,33 @@ register_activation_hook(__FILE__, 'project_install');
 //index
 function fn_project_index()
 {
-	include('project_index.php');
+	include('wp_backstage/project_index.php');
 	//include('project_config.php');
 }
 
 //add
 function fn_project_add()
 {
-	include('project_add.php');
+	include('wp_backstage/project_add.php');
 }
 
 //edit
 function fn_project_edit()
 {
-	include('project_edit.php');
+	include('wp_backstage/project_edit.php');
 }
 
 //api for test
 function fn_project_api()
 {
-	include('project_api.php');
+	include('utils/project_api.php');
 }
 
 //api for test
 function fn_project_show()
 {
-	include('project_show.php');
+	//echo "show";
+	include('frontstage/project_show.php');
 }
 
 // 在控制面板中添加控件
