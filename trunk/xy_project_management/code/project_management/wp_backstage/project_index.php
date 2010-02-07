@@ -1,7 +1,7 @@
 <?php include("project_function.php")?>
-<script type="text/javascript" src="../utils/project_javascript.js"></script>
+<script type="text/javascript" src="../wp-content/plugins/project_management/utils/project_javascript.js"></script>
 <div class="wrap">
-	<?php screen_icon(); ?>
+	<div id="icon-plugins" class="icon32"><br /></div>
 	<h2><?php echo "项目管理" ?>&nbsp;<a href="admin.php?page=project_add" class="button add-new-h2"><?php echo "添加项目" ?></a></h2>
 	<?php 
 		if(isset($_GET['action'])){
@@ -26,19 +26,6 @@
 			<input type="submit" value="<?php echo "搜索项目"; ?>" class="button" />
 		</p>
 	</form>
-	<div class="alignleft actions">
-		<select name='m'>
-			<option value='0' selected="selected">过滤1</option>
-			<option value='0'>过滤1</option>
-			<option value='0'>过滤1</option>
-		</select>
-		<select name='m'>
-			<option value='0' selected="selected">过滤2</option>
-			<option value='0'>过滤2</option>
-			<option value='0'>过滤2</option>
-		</select>
-		<input type="submit" id="post-query-submit" value="过滤" class="button-secondary" />
-	</div>
 	<form name="all" action="admin.php?page=project&action=all" method="post">
 		<table class="widefat post fixed" cellspacing="0">
 			<thead>
@@ -51,7 +38,7 @@
 			</tbody>
 			<tfoot>
 				<tr>
-					<?php print_project_column2(); ?>
+					<?php //print_project_column2(); ?>
 				</tr>
 			</tfoot>
 		</table>
