@@ -1,0 +1,26 @@
+body {
+	font-size: 18px;
+	background:url(../images/sub_menu_03.gif) repeat-x;
+}
+
+.rsscontent{
+	border-color:#1e50a2;
+	border-style:solid;/*设置顶边线条为虚线*/
+	border-width:2px;/*设置顶边粗细为1像素*/
+	padding:10px;
+}
+
+.toggler1{
+	padding:5px;
+	margin:0px;
+	text-align:left;
+}
+.addrssto{
+	font: bold 14px Arial;
+	color:#1e50a2;
+}
+
+
+.toggler1 .rtitle{font-size:20px;}
+.toggler1 .rtitle a{/*position:relative;padding-right:23px;*/color:#000;}
+.toggler1 .stat{margin:.5em 0 1em;color:#888; font-size:14px;}
