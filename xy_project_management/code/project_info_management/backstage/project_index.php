@@ -70,8 +70,10 @@ function print_single_row($single_project) {
 	echo $single_project->print_project_start_date()."</td><td>";
 	echo $single_project->print_project_finish_date()."</td><td>";
 	echo $single_project->print_project_tag()."</td><td>";
-	echo "<a href='project_edit.php?project_id=" . $single_project->print_project_id() . "'>编辑</a>|";
-	echo "<a href='project_index.php?action=remove&project_id=" . $single_project->print_project_id() . "'>删除</a></td>";
+	echo "<a href='project_edit.php?project_id=";
+	echo $single_project->print_project_id() . "'>编辑</a>|";
+	echo "<a href='project_index.php?action=remove&project_id=";
+	echo $single_project->print_project_id() . "'>删除</a></td>";
 	echo "</tr>";
 }
 
