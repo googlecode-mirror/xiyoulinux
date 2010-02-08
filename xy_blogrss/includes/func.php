@@ -19,19 +19,31 @@ function show_top()
 	<script type="text/javascript" src="js/function.js" ></script>
 	<script type="text/javascript" src="js/jquery.toggleElements.pack.js"></script>
 <script type="text/javascript">
-	$(document).ready(function(){
-		$('div.toggler1').toggleElements( );
-	});
+$(document).ready(function(){
+	$('div.toggler1').toggleElements( );
+});
 	
-function doOnClick() {
-	alert('callback: onClick');
-}
-function doOnHide() {
-	alert('callback: onHide');
-}
-function doOnShow() {
-	alert('callback: onShow');
-}
+ddaccordion.init({
+        headerclass: "list_title", 
+        contentclass: "hide_menu", 
+        revealtype: "click", 
+        mouseoverdelay: 100, 
+        collapseprev: true, 
+        defaultexpanded: [0],
+        onemustopen: false, 
+        animatedefault: false, 
+        persiststate: true, 
+        toggleclass: ["", "openheader"], 
+        togglehtml: ["prefix", "", ""], 
+        animatespeed: "fast",
+        oninit:function(headers, expandedindices){ 
+                //do nothing
+        },
+        onopenclose:function(header, index, state, isuseractivated){ 
+                //do nothing
+        }
+})
+	
 </script>
 </head>
 <?php
@@ -42,7 +54,10 @@ function doOnShow() {
 <?php
 function ShowOneRSS($url) {
 	global $rss2;
-
+	
+	if (!$url) {
+		$url="http://zhwen.org/xlog/feed";
+	}
 	if (($rs = $rss2->get($url)) && ($url != '')) {
 	echo "<div id=\"blog_user\">";
 	echo "<span id=\"blog_user\"><a target='_blank' ";
@@ -69,9 +84,11 @@ function ShowOneRSS($url) {
 	echo "</div><br>";
 	echo "<div class=\"addrssto\">加入收藏其他</div>";
 	echo "</div>";
-	echo "</div>";		//<!-- end one item -->
-	}
+	echo "</div>";				//<!-- end one item -->
+	} 
 	echo "</div><div id=\"blog_bottom\"></div></div>";		//<!-- end show rss-->
+	} else {
+		echo "<li>Sorry, no items found in the RSS file :-(</li>"; 
 	}
 }
 ?>
