@@ -1,0 +1,85 @@
+/**
+ * ----------------------------------------------------------------------------
+ * toggleElements.css - Stylesheet for jQuery-Plugin toggleElements
+ * ----------------------------------------------------------------------------
+ */
+
+/* Screen ------------------------------------------------------------------- */
+@media projection, screen {
+	/* Toggler - default style */
+	.toggler {
+	   	margin:1px 0 1px 0;
+		cursor:pointer;
+		text-decoration: none;
+		font-size: 18px;
+		font-weight:bold;
+		line-height:20px;
+		display: block;
+		vertical-align:bottom;
+		cursor:pointer;
+		text-align:left;
+	}
+	.toggler-closed {
+		color:#333;
+		padding-left:15px;
+		height:30px;
+		background: #eee url('../images/togglerc.gif') center right no-repeat;
+		border: solid 1px white;
+		vertical-align:bottom;
+		text-align:left;
+	}
+	.toggler-closed:hover {
+		color: #000;
+		padding-left:15px;
+		height:30px;
+		background: #fff url('../images/togglerch.gif') center right no-repeat;
+		border: solid 1px #e3e3e3;
+		vertical-align:bottom;
+		text-align:left;
+	}
+	.toggler-opened {
+		color:#333;
+		padding-left:15px;
+		height:30px;
+		background: #edf4ff url('../images/togglero.gif') center right no-repeat;
+		border: solid 1px white;
+		vertical-align:bottom;
+		text-align:left;
+	}
+	.toggler-opened:hover {
+		color: #000;
+		padding-left:15px;
+		height:30px;
+		background: #fff url('../images/toggleroh.gif') center right no-repeat;
+		border: solid 1px #e3e3e3;
+		vertical-align:bottom;
+		text-align:left;
+	}
+
+	/* Container - default style */
+	.toggler-c {
+	}
+	.toggler-c-closed {
+	   background:transparent;
+	   border:solid 1px #e3e3e3;
+	   margin:-0px 0px 0px 0px;
+	   padding:0px;
+	   text-align:left;
+	}
+	.toggler-c-opened {
+	   margin:-0px 0px 0px 0px;
+	   padding:0px;
+	   background:#f7fcff;
+	   border:solid 1px #fff;
+	   text-align:left;
+	}
+
+}
+
+/* Print -------------------------------------------------------------------- */
+@media print {
+
+	.toggler-c { margin-bottom:0px; }
+	.toggler { display: none; }
+
+}
