@@ -61,12 +61,15 @@ function show_list() {
 	$c6 = 0;
 	$c7 = 0;
 
-	$conn = mysql_connect("localhost","root","root")or die("connect err:".MySql_error());
+	$conn = mysql_connect("208.97.186.208","xiyoulinux","xiyoulinux.cn") or die("connect err:".MySql_error());
+	//$conn = mysql_connect("localhost","root","root") or
+	// die("connect err:".MySql_error());
 //	$conn = mysql_connect($hostip,$user,$passwd)or die("connect err:".MySql_error());
 	if($conn) {
-		mysql_select_db("xiyoulinux");		//此处需要修改数据库名称
+		mysql_select_db("xiyoulinux_org");		//此处需要修改数据库名称
+//		mysql_select_db("xiyoulinux");		//此处需要修改数据库名称
 		$sql = "select xy_member.member_blog,xy_member.member_rss_url,xy_category.category_name from xy_category,xy_member where xy_member.member_category_ID=xy_category.category_ID and xy_member.member_rss_url!=''";
-		//$sql = "select category,link,title from xyreader";
+
 		$result = mysql_query($sql, $conn);
 		while($row = mysql_fetch_array($result)) {
 			//echo $row[0];
@@ -102,41 +105,41 @@ function show_list() {
  *数据查询结束，开始数据显示
  */
 echo "<ul id=\"nav\">";
-	echo "<li class=\"current\">";
-	echo "<a href=\"#\"><img src=\"images/sub_list_03.gif\"><div class=\"text_seclect\">07级成员博客</div></a>";
-	echo "<ul>";
+	echo "<li class=\"current\" >";
+	echo "<a href=\"#\" class=\"list_title\"><img src=\"images/sub_list_03.gif\"><div class=\"text_seclect\">07级成员博客</div></a>";
+	echo "<div class=\"hide_menu\"><ul>";
 	for($i = 0; $i < $c7; $i++) {
 		echo "<li><a href='?feed_url=".$category7link[$i]."' title='".$category7title[$i]."' onmouseover='hover1(this.style)' onmouseout='hout1(this.style)'>";
 		echo "<strong>".$category7title[$i]."</strong><img src=\"images/sub_list_04.gif\"></a></li>";
 	}
-	echo "</ul></li>";
+	echo "</ul></div></li>";
 	
 	echo "<li class=\"current\">";
-	echo "<a href=\"#\"><img src=\"images/sub_list_03.gif\"><div class=\"text_seclect\">06级成员博客</div></a>";
-	echo "<ul>";
+	echo "<a href=\"#\" class=\"list_title\"><img src=\"images/sub_list_03.gif\"><div class=\"text_seclect\">06级成员博客</div></a>";
+	echo "<div class=\"hide_menu\"><ul>";
 	for($i = 0; $i < $c6; $i++) {
 		echo "<li><a title='".$category6title[$i]."' href='?feed_url=".$category6link[$i]."' onmouseover='hover1(this.style)' onmouseout='hout1(this.style)'>";
 		echo "<strong>".$category6title[$i]."</strong></a></li>";
 	}
-	echo "</ul></li>";
+	echo "</ul></div></li>";
 
 	echo "<li class=\"current\">";
-	echo "<a href=\"#\"><img src=\"images/sub_list_03.gif\"><div class=\"text_seclect\">05级成员博客</div></a>";
-	echo "<ul>";
+	echo "<a href=\"#\" class=\"list_title\"><img src=\"images/sub_list_03.gif\"><div class=\"text_seclect\">05级成员博客</div></a>";
+	echo "<div class=\"hide_menu\"><ul>";
 	for($i = 0; $i < $c5; $i++) {
 		echo "<li><a title='".$category5title[$i]."' href='?feed_url=".$category5link[$i]."' onmouseover='hover1(this.style)' onmouseout='hout1(this.style)'>";
 		echo "<strong>".$category5title[$i]."</strong></a></li>";
 	}
-	echo "</ul></li>";
+	echo "</ul></div></li>";
 
 	echo "<li class=\"current\">";
-	echo "<a href=\"#\"><img src=\"images/sub_list_03.gif\"><div class=\"text_seclect\">04级成员博客</div></a>";
-	echo "<ul>";
+	echo "<a href=\"#\" class=\"list_title\"><img src=\"images/sub_list_03.gif\"><div class=\"text_seclect\">04级成员博客</div></a>";
+	echo "<div class=\"hide_menu\"><ul>";
 	for($i = 0; $i < $c4; $i++) {
 		echo "<li><a title='".$category4title[$i]."' href='?feed_url=".$category4link[$i]."' onmouseover='hover1(this.style)' onmouseout='hout1(this.style)'>";
 		echo "<strong>".$category4title[$i]."</strong></a></li>";
 	}
-	echo "</ul></li>";
+	echo "</ul></div></li>";
 echo "</ul>";
 }
 ?>
