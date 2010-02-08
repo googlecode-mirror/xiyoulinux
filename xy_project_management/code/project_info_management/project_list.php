@@ -49,7 +49,7 @@ function print_project_rows($project_count, $page_size, $current_page, $project_
 // 打印单行数据
 function print_single_row($single_project) {
 	echo "<tr><td>";
-	echo $single_project->print_project_name()."</td><td>";
+	echo "<a href='project_edit.php?project_id=" . $single_project->print_project_name() . "'>" . $single_project->print_project_name() . "</a></td><td>";
 	echo $single_project->print_project_manager()."</td><td>";
 	echo $single_project->print_project_member()."</td><td>";
 	echo $single_project->print_project_start_date()."</td><td>";
@@ -63,7 +63,7 @@ function print_project_foot($project_count, $page_size) {
 	require_once('utils/page.class.php');
 	
 	$page=new page(array('total'=>$project_count, 'perpage'=>$page_size));
-	echo '<br>'.$page->show();
+	echo '<td>'.$page->show().'</td>';
 }
 ?>
 
