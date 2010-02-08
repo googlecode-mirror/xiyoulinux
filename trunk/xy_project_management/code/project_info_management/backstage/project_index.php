@@ -80,7 +80,7 @@ function print_project_foot($project_count, $page_size) {
 	require_once('../utils/page.class.php');
 	
 	$page=new page(array('total'=>$project_count, 'perpage'=>$page_size));
-	echo '<br>'.$page->show();
+	echo '<td>'.$page->show().'</td>';
 }
 ?>
 
