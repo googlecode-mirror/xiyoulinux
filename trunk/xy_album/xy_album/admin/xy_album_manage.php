@@ -47,7 +47,7 @@ function show_album_manage(){
      	<br />
      	<input type="hidden" name="album_id" id="form_album_id"  value="<?php echo $album->album_ID ?>" />
      	<br />
-     	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="submit" value="修改" id="form_upload_submit" />
+     	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="submit" value="修改" id="form_upload_submit" />
      	<input type="reset" value="重置" id="form_upload_reset" />
     	
 </form>		
@@ -70,6 +70,15 @@ function xy_update_album(){
 	  
 	  global $wpdb;
 	  $table2album = $wpdb->prefix . "xy_album";
+	  
+	$album_names =  $wpdb->get_results( "SELECT album_name FROM $table2album" ); 
+	foreach($album_names as $album_name){
+		if($album_name->album_name == $_POST['album_name']){
+			echo '<br />';
+			echo "相册 ‘".$_POST['album_name']."’ 已经存在，请重新命名..";
+			return;
+		}	
+	}
 	  
       $update = "update " . $table2album ." set album_name='" . $_POST['album_name'] . "',album_intro='". $album_desc ."' where album_ID=".$_POST['album_id'].";";
       $results = $wpdb->query( $update);
@@ -125,7 +134,7 @@ function show_photo_manage(){
      	<input type="hidden" name="photo_thumb_url" id="form_photo_thumb_url"  value="<?php echo $photo->photo_thumb_url ?>" />
      	<input type="hidden" name="photo_album" id="form_photo_album"  value="<?php echo $photo->photo_album ?>" />
 
-    移动到:&nbsp&nbsp&nbsp&nbsp&nbsp<select size=1 name="select_album">
+    移&nbsp动&nbsp到&nbsp&nbsp:&nbsp<select size=1 name="select_album">
 		<option selected>选择相册
 		<?php
 			$table2album = $wpdb->prefix . "xy_album";
@@ -137,7 +146,7 @@ function show_photo_manage(){
 	</select>
 	<br/>
 	<br />
-     	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="submit" value="修改" id="form_upload_submit" />
+     	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="submit" value="修改" id="form_upload_submit" />
      	<input type="reset" value="重置" id="form_upload_reset" />
     	
 </form>	
@@ -168,8 +177,7 @@ function xy_update_photo(){
 	if($_POST['del_photo']== "0"){
 	
 		//如果删除了相册封面，需要重新设置封面为默认封面
-
-		if($current_cover==$_POST['photo_url']){
+		if($current_cover==$_POST['photo_thumb_url']){
 			$update = "update " . $table2album ." set album_cover='" .WP_PLUGIN_URL."/xy_album_".XY_ALBUM_VERSION."/default_cover.jpg"."' where album_ID=".$_POST['photo_album'].";";
 			$wpdb->query( $update);
 		}
@@ -199,8 +207,8 @@ function xy_update_photo(){
 		}
 	}	
 	
-	//如果跟新照片到不同的相册但是该相片是当前相册的封面，那么更新之前相册的封面到默认封面
-	if(($current_cover==$_POST['photo_url'])&&(($_POST['photo_album']!=$select_album_ID)||($_POST['select_album']!="选择相册"))) {
+	//如果更新照片到不同的相册但是该相片是当前相册的封面，那么更新之前相册的封面到默认封面
+	if(($current_cover==$_POST['photo_thumb_url'])&&(($_POST['photo_album']!=$select_album_ID)||($_POST['select_album']!="选择相册"))) {
 		$update = "update " . $table2album ." set album_cover='" .WP_PLUGIN_URL."/xy_album_".XY_ALBUM_VERSION."/default_cover.jpg"."' where album_ID=".$_POST['photo_album'].";";
 		$wpdb->query( $update);
 	}
