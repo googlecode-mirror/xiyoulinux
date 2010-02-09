@@ -1,9 +1,9 @@
 <?php
 /*
-Plugin Name: xy_album
+Plugin Name: 相册管理
 Plugin URI: http://code.google.com/p/xiyoulinux/downloads/list
 Description: this is a album-plgin for the web of the xiyoulinux,it has completed simply to upload photos,scan the photos,comment them.
-Version: 1.2.4
+Version: 1.2.6
 Author: 周永飞,李阳,孙建刚
 Author URI: http://blog.chinaunix.net/u3/104183/
 */

@@ -36,7 +36,7 @@ function addimg(){
 	 var name_input = document.createElement("input");
 	 name_input.name = "img[]";
 	 name_input.type = 'file';
-	 name_input.size = 15;  
+	 name_input.size = 30; 
 	 div.appendChild(name_input);
 	 
 
@@ -82,7 +82,7 @@ function addimg(){
 <br />
 <table border=1>
 	<td>
-		<tr><input type="file" size=15 name="img[]"/></tr>
+		<tr><input type="file" size=30 name="img[]" readonly=""/></tr>
 		<tr><input type="text" size=15 name="desc[]" value="请输入描述信息" onFocus="if(value==defaultValue){value='';this.style.color='#000'}" onBlur="if(!value){value=defaultValue;this.style.color='#999'}" style="color:#999999"/></tr>
 		<tr><input type="text" size=15 name="tag[]" value="请输入关键字" onFocus="if(value==defaultValue){value='';this.style.color='#000'}" onBlur="if(!value){value=defaultValue;this.style.color='#999'}" style="color:#999999"/></tr>
 

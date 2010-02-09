@@ -17,9 +17,9 @@ function xy_create_album()
 
 <form action= "admin.php?page=<?php echo XY_ALBUM_DIR?>/admin/xy_create_album.php&amp;action_create_album=true" id="form_create_album" method="post" enctype="multipart/form-data"/>
     	<div>
-     	相册名：<input type="text" name="album_name" id="form_album_name" size="26" value="请输入相册名" onFocus="if(value==defaultValue){value='';this.style.color='#000'}" onBlur="if(!value){value=defaultValue;this.style.color='#999'}" style="color:#999999" //>
+     	相册名：<input type="text" name="album_name" id="form_album_name" size="22" value="请输入相册名" onFocus="if(value==defaultValue){value='';this.style.color='#000'}" onBlur="if(!value){value=defaultValue;this.style.color='#999'}" style="color:#999999" //>
      	<br /></br>
-     	描&nbsp&nbsp&nbsp述：<textarea rows=6 cols=20 name="album_desc" id="form_album_desc" size="26" value="请输入描述信息" onFocus="if(value==defaultValue){value='';this.style.color='#000'}" onBlur="if(!value){value=defaultValue;this.style.color='#999'}" style="color:#999999" >请输入描述信息</textarea>
+     	描&nbsp&nbsp&nbsp述：<textarea rows=3 cols=20 name="album_desc" id="form_album_desc" size="26" value="请输入描述信息" onFocus="if(value==defaultValue){value='';this.style.color='#000'}" onBlur="if(!value){value=defaultValue;this.style.color='#999'}" style="color:#999999" >请输入描述信息</textarea>
      	<br />
      	<br />
      	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="submit" value="确定" id="form_upload_submit" />
