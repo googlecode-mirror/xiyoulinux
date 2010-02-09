@@ -16,12 +16,12 @@ function print_feed($myfeed='http://code.google.com/feeds/p/xiyoulinux/updates/b
 	if(isset($rss->items) && 0 != count($rss->items)) {
 		echo '<h3>' . $feedtitle . '</h3><ul>';
 		$rss->items = array_slice($rss->items, 0, $shownumber);
-		foreach ($rss->items as $item ) {
-			$title = wp_specialchars($item['title']);
-			$url = wp_filter_kses($item['link']);
-			//echo $title;
-			//echo $url;
-			echo "<li><a href=$url>$title</a></li>";
+		foreach ($rss->items as $item) {
+			$title = $item['title'];
+			$title_url = $item['link'];
+			echo "<br>TITLE: ".$title;
+			//echo "<br>URL: ".$title_url;
+			//echo "<li><a href=$url>$title</a></li>";
 			//echo $item['description'];
 		}
 	}
