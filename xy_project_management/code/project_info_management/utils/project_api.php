@@ -61,9 +61,11 @@ class Project {
 	private $project_pic = "test";
 	private $project_doc = "test";
 	private $project_url = "test";
+	private $project_download = "test";
 	private $project_rss = "test";
 	private $project_auther_ID = 1;
 	private $project_tag = "test";
+	private $project_allow = 0;
 	
 	//构造
 	function __construct($id) {
@@ -84,9 +86,11 @@ class Project {
 		$this->project_pic = $row->project_pic;
 		$this->project_doc = $row->project_doc;
 		$this->project_url = $row->project_url;
+		$this->project_download = $row->project_download;
 		$this->project_rss = $row->project_rss;
 		$this->project_auther_ID = $row->project_auther_ID;
 		$this->project_tag = $row->project_tag;
+		$this->project_allow = $row->project_allow;
 	}
 	//显示项目ID
 	public function print_project_id() {
@@ -138,6 +142,11 @@ class Project {
 		
 		echo $this->project_url;
 	}
+	//显示项目地址
+	public function print_project_download() {
+		
+		echo $this->project_download;
+	}
 	//显示项目更新
 	public function print_project_rss() {
 		//echo $this->project_rss;
@@ -152,6 +161,11 @@ class Project {
 	public function print_project_tag() {
 		
 		echo $this->project_tag;
+	}
+	//显示项目标签
+	public function print_project_allow() {
+		
+		echo $this->project_allow;
 	}
 }
 //$myproject = new Project(1);
