@@ -34,7 +34,7 @@ function get_project_list() {
 	global $wpdb;
 	$table_name = 'xy_project';
 	
-	$select_sql = "SELECT project_ID FROM " . $table_name;
+	$select_sql = "SELECT project_ID FROM " . $table_name . "WHERE project_allow = 1";
 	$results = $wpdb->get_results($select_sql);
 	
 	$project_list = array();
@@ -142,7 +142,7 @@ class Project {
 		
 		echo $this->project_url;
 	}
-	//显示项目地址
+	//显示项目下载地址
 	public function print_project_download() {
 		
 		echo $this->project_download;
@@ -152,20 +152,20 @@ class Project {
 		//echo $this->project_rss;
 		print_feed($this->project_rss, $this->project_name, 5);
 	}
-	//显示项目创建者
+	//获取项目创建者ID
 	public function print_project_auther_ID() {
 		
-		echo $this->project_auther_ID;
+		return $this->project_auther_ID;
 	}
 	//显示项目标签
 	public function print_project_tag() {
 		
 		echo $this->project_tag;
 	}
-	//显示项目标签
-	public function print_project_allow() {
+	//获取项目审核
+	public function get_project_allow() {
 		
-		echo $this->project_allow;
+		return $this->project_allow;
 	}
 }
 //$myproject = new Project(1);
