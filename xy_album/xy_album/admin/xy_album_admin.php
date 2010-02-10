@@ -1,6 +1,7 @@
 <?php
 
 include_once( $plugin_dir . 'xy_admin_function.php');
+include_once( dirname(dirname(__FILE__)) .'/xy_create_json.php');
 include_once( dirname(dirname(__FILE__)) . '/xy_album_config.php');
 
 $folder_uri = "wp-content/xy-album/";
@@ -83,7 +84,6 @@ function xy_build_admin_form() {
     <?php
   }
 }
-
 
 ?>
 

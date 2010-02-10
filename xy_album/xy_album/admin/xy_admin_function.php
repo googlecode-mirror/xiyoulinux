@@ -128,7 +128,7 @@ function get_file_exten($filestr){
     $gonten = array_reverse($gonten);  //把上面数组倒序
     return $gonten[0]; 					//返回倒序数组的第一个值
 }
-s
+
 
 
 

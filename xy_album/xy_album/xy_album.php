@@ -3,7 +3,7 @@
 Plugin Name: 相册管理
 Plugin URI: http://code.google.com/p/xiyoulinux/downloads/list
 Description: this is a album-plgin for the web of the xiyoulinux,it has completed simply to upload photos,scan the photos,comment them.
-Version: 1.2.6
+Version: 1.3.0
 Author: 周永飞,李阳,孙建刚
 Author URI: http://blog.chinaunix.net/u3/104183/
 */
@@ -45,7 +45,8 @@ function xy_album_install () {
 
    $table2album = $wpdb->prefix . "xy_album";
    $table2photo = $wpdb->prefix . "xy_photo";
-   if(($wpdb->get_var("show tables like '$table2album'") != $table2album)&&($wpdb->get_var("show tables like '$table2photo'") != $table2photo)) {
+   $table2json = $wpdb->prefix . "xy_json";
+   if(($wpdb->get_var("show tables like '$table2json'") != $table2json)&&($wpdb->get_var("show tables like '$table2album'") != $table2album)&&($wpdb->get_var("show tables like '$table2photo'") != $table2photo)) {
       //相册ID，相册名称，相册封面，相册描述，相册作者，相册日期
       $sql2album = "CREATE TABLE " . $table2album . " (
   	`album_ID` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
@@ -69,13 +70,20 @@ function xy_album_install () {
   	PRIMARY KEY (`photo_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
 
+	 $sql2json = "CREATE TABLE " . $table2json . " (
+  	`album_json` LONGTEXT DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+
       require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
       dbDelta($sql2album);
       dbDelta($sql2photo);
+      dbDelta($sql2json);
       
       add_option("xy_albumdb_version", $xy_albumdb_version);
 
    }
+	$insert = 'insert into ' . $table2json .' values(" ");';
+    $results = $wpdb->query( $insert);
 }
 
 register_activation_hook(__FILE__,'xy_album_install');  

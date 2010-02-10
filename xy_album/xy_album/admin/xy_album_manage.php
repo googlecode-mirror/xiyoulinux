@@ -24,33 +24,47 @@ function show_album_manage(){
 	echo "<br /><br />";
 	echo '没有相册，请先<a href="admin.php?page='.XY_ALBUM_DIR.'/admin/xy_create_album.php&amp;allow_create_album=true">创建相册</a>，上传照片';
 	}
-	//time_nanosleep(0,500);  让脚本等待时间执行
+	//time_nanosleep(0,500);  让脚本等待时间执行	
+	
+	echo"<br />";
 	foreach($albums as $album){
 ?>
-		<br />
-		<br />
-		编辑相册:<?php echo $album->album_name?>,
+
+<hr width="500" align="left">
+
+<table >
+	<td>
+		编辑相册:<input type="text" size="6" readonly="" style="color:#FF0000" value="<?php echo $album->album_name ?>"/>
 		<a href="admin.php?page=<?php echo XY_ALBUM_DIR;?>/admin/xy_album_manage.php&amp;show_photo_manager=true&amp;select_album=<?php echo $album->album_ID?>">查看照片
 		<br />
+		<br/>
+		<img border=2 src="<?php echo $album->album_cover?>" alt="不能显示"/>
 		<br />
-		<img src="<?php echo $album->album_cover?>" alt="不能显示"/> 
+		<br />	
+		</a>			
+	</td>
+	
+	<td>
+	<form action= "admin.php?page=<?php echo XY_ALBUM_DIR?>/admin/xy_album_manage.php&amp;action_update_album=true" id="form_create_album" method="post" enctype="multipart/form-data"/>
 		<br />
-		<br />		
+		<!<br />
+	
 		
-		</a>
-
-<form action= "admin.php?page=<?php echo XY_ALBUM_DIR?>/admin/xy_album_manage.php&amp;action_update_album=true" id="form_create_album" method="post" enctype="multipart/form-data"/>
-    	
      	相册名称：<input type="text" name="album_name" id="form_album_name" size="26" value="<?php echo $album->album_name ?>"/>
-     	<br />
+     	<br  />
      	相册描述：<input type="text" name="album_desc" id="form_album_desc" size="26" value="<?php echo $album->album_intro ?>" />
-     	<br />
      	<input type="hidden" name="album_id" id="form_album_id"  value="<?php echo $album->album_ID ?>" />
      	<br />
-     	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="submit" value="修改" id="form_upload_submit" />
+     	<br />
+     	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+     	<input type="submit" value="修改" id="form_upload_submit" />
      	<input type="reset" value="重置" id="form_upload_reset" />
-    	
-</form>		
+     
+	
+	</form>	
+	</td>
+</table> 	
+<hr width="500" align="left">
 
 <?php
 	}
@@ -236,3 +250,6 @@ if($_GET['show_photo_manager']==true){
 	show_photo_manage();
 }
 ?>
+
+
+
