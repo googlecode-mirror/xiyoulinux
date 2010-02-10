@@ -29,6 +29,7 @@ function project_install() {
 				project_pic varchar(255) DEFAULT NULL,
 				project_doc varchar(255) DEFAULT NULL,
 				project_url varchar(255) DEFAULT NULL,
+				project_download varchar(255) DEFAULT NULL,
 				project_rss varchar(255) DEFAULT NULL,
 				project_auther_ID bigint(20) unsigned DEFAULT NULL,
 				project_tag varchar(255) DEFAULT NULL,
@@ -49,6 +50,7 @@ function project_install() {
 		$project_pic = "Project Management";
 		$project_doc = "http://xiyoulinux.cn";
 		$project_url = "http://code.google.com/p/xiyoulinux/";
+		$project_download = "http://code.google.com/p/xiyoulinux/";
 		$project_rss = "http://code.google.com/feeds/p/xiyoulinux/updates/basic";
 		$project_auther_ID = 1;
 		$project_tag = "project";
@@ -62,6 +64,7 @@ function project_install() {
 						'project_pic' => $project_pic,
 						'project_doc' => $project_doc,
 						'project_url' => $project_url,
+						'project_download' => $project_download,
 						'project_rss' => $project_rss,
 						'project_auther_ID' => $project_auther_ID,
 						'project_tag' => $project_tag
