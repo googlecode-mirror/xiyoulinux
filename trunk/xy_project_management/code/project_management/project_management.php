@@ -33,6 +33,7 @@ function project_install() {
 				project_rss varchar(255) DEFAULT NULL,
 				project_auther_ID bigint(20) unsigned DEFAULT NULL,
 				project_tag varchar(255) DEFAULT NULL,
+				project_allow int(11) DEFAULT 0,
 				PRIMARY KEY(project_ID)
 				) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
 		
@@ -54,6 +55,7 @@ function project_install() {
 		$project_rss = "http://code.google.com/feeds/p/xiyoulinux/updates/basic";
 		$project_auther_ID = 1;
 		$project_tag = "project";
+		$project_allow = 0;
 		
 		$init_array = array('project_name' => $project_name, 
 						'project_manager' => $project_manager,
@@ -67,7 +69,8 @@ function project_install() {
 						'project_download' => $project_download,
 						'project_rss' => $project_rss,
 						'project_auther_ID' => $project_auther_ID,
-						'project_tag' => $project_tag
+						'project_tag' => $project_tag,
+						'project_allow' => $project_allow,
 						);
 
 		$wpdb->insert($table_name, $init_array);
