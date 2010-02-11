@@ -3,7 +3,7 @@
 Plugin Name: 相册管理
 Plugin URI: http://code.google.com/p/xiyoulinux/downloads/list
 Description: this is a album-plgin for the web of the xiyoulinux,it has completed simply to upload photos,scan the photos,comment them.
-Version: 1.3.0
+Version: 1.3.1
 Author: 周永飞,李阳,孙建刚
 Author URI: http://blog.chinaunix.net/u3/104183/
 */
@@ -80,10 +80,11 @@ function xy_album_install () {
       dbDelta($sql2json);
       
       add_option("xy_albumdb_version", $xy_albumdb_version);
+    $insert = 'insert into ' . $table2json .' values(" ");';
+    $results = $wpdb->query( $insert);
 
    }
-	$insert = 'insert into ' . $table2json .' values(" ");';
-    $results = $wpdb->query( $insert);
+
 }
 
 register_activation_hook(__FILE__,'xy_album_install');  

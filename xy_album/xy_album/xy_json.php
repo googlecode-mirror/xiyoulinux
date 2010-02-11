@@ -6,8 +6,9 @@ if (!$con)
   die('Could not connect: ' . mysql_error());
   }
 
-//这块得改数据库的名字
+mysql_query("SET NAMES 'GBK'");
 mysql_select_db("xy_zhou", $con);
+
 
 $result = mysql_query("SELECT * FROM wp_xy_json");
 

@@ -241,4 +241,6 @@ xy_file_load();
 if($_GET['action_file_upload']==true){
 	file_upload();
 }
+
+include_once( dirname(dirname(__FILE__)) .'/xy_update_json.php');
 ?>
