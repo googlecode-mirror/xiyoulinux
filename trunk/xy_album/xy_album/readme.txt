@@ -69,3 +69,11 @@
 
 	1.新建生成json的php的页面，用于李阳前台数据的使用
 	2.优化后台相册分布。
+	
+2009-02-11 :version 1.3.1
+
+	1.解决了从json数据库中读取数据的乱码问题
+	2.在相册管理完毕后得更新json数据库
+	3.修正bug：更新相册时如果名称不变不能更新的问题。
+	4.修改了版本不在插件文件夹上显示
+	(注意：在使用插件的给前台提供数据接口生成json的页面：xy_json.php中修改数据库用户名密码$con = mysql_connect("localhost","username","password");和数据库名mysql_select_db("your_db_name", $con);)

@@ -54,6 +54,7 @@ function show_album_manage(){
      	<br  />
      	相册描述：<input type="text" name="album_desc" id="form_album_desc" size="26" value="<?php echo $album->album_intro ?>" />
      	<input type="hidden" name="album_id" id="form_album_id"  value="<?php echo $album->album_ID ?>" />
+     	<input type="hidden" name="album_pre_name" id="form_album_pre_name"  value="<?php echo $album->album_name ?>" />
      	<br />
      	<br />
      	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
@@ -84,14 +85,15 @@ function xy_update_album(){
 	  
 	  global $wpdb;
 	  $table2album = $wpdb->prefix . "xy_album";
-	  
-	$album_names =  $wpdb->get_results( "SELECT album_name FROM $table2album" ); 
-	foreach($album_names as $album_name){
-		if($album_name->album_name == $_POST['album_name']){
-			echo '<br />';
-			echo "相册 ‘".$_POST['album_name']."’ 已经存在，请重新命名..";
-			return;
-		}	
+	if($_POST['album_name']!=$_POST['album_pre_name'])  {
+		$album_names =  $wpdb->get_results( "SELECT album_name FROM $table2album" ); 
+		foreach($album_names as $album_name){
+			if($album_name->album_name == $_POST['album_name']){
+				echo '<br />';
+				echo "相册 ‘".$_POST['album_name']."’ 已经存在，请重新命名..";
+				return;
+			}	
+		}
 	}
 	  
       $update = "update " . $table2album ." set album_name='" . $_POST['album_name'] . "',album_intro='". $album_desc ."' where album_ID=".$_POST['album_id'].";";
@@ -192,7 +194,7 @@ function xy_update_photo(){
 	
 		//如果删除了相册封面，需要重新设置封面为默认封面
 		if($current_cover==$_POST['photo_thumb_url']){
-			$update = "update " . $table2album ." set album_cover='" .WP_PLUGIN_URL."/xy_album_".XY_ALBUM_VERSION."/default_cover.jpg"."' where album_ID=".$_POST['photo_album'].";";
+			$update = "update " . $table2album ." set album_cover='" .WP_PLUGIN_URL."/xy_album/default_cover.jpg"."' where album_ID=".$_POST['photo_album'].";";
 			$wpdb->query( $update);
 		}
 			
@@ -223,7 +225,7 @@ function xy_update_photo(){
 	
 	//如果更新照片到不同的相册但是该相片是当前相册的封面，那么更新之前相册的封面到默认封面
 	if(($current_cover==$_POST['photo_thumb_url'])&&(($_POST['photo_album']!=$select_album_ID)||($_POST['select_album']!="选择相册"))) {
-		$update = "update " . $table2album ." set album_cover='" .WP_PLUGIN_URL."/xy_album_".XY_ALBUM_VERSION."/default_cover.jpg"."' where album_ID=".$_POST['photo_album'].";";
+		$update = "update " . $table2album ." set album_cover='" .WP_PLUGIN_URL."/xy_album/default_cover.jpg"."' where album_ID=".$_POST['photo_album'].";";
 		$wpdb->query( $update);
 	}
 	
@@ -249,6 +251,8 @@ if($_GET['show_photo_manager']!=true){
 if($_GET['show_photo_manager']==true){
 	show_photo_manage();
 }
+
+include_once( dirname(dirname(__FILE__)) .'/xy_update_json.php');
 ?>
 
 

@@ -66,15 +66,18 @@ function create_album(){
 	  $datetime = date("Y-n-d   H:i:s");
       $insert = "INSERT INTO " . $table2album .
             " (album_name,album_cover,album_intro,album_auther_ID, album_date) " .
-            "VALUES ('" . $_POST['album_name'] . "','" .WP_PLUGIN_URL."/xy_album_".XY_ALBUM_VERSION."/default_cover.jpg"."','" . $album_desc ."','". $current_user->ID."','" . $datetime ."')";
+            "VALUES ('" . $_POST['album_name'] . "','" .WP_PLUGIN_URL."/xy_album/default_cover.jpg"."','" . $album_desc ."','". $current_user->ID."','" . $datetime ."')";
       $results = $wpdb->query( $insert );
       echo'<br/>';
       //echo'创建相册‘'.$_POST['album_name'].'’成功';
       echo '创建相册'.'<strong style="color:#ff0000;">“'.$_POST['album_name'].'”</strong>:'.'成功';
 
 }
+
 xy_create_album();
 if($_GET['action_create_album']==true){
 	create_album();
 }
+
+include_once( dirname(dirname(__FILE__)) .'/xy_update_json.php');
 ?>
