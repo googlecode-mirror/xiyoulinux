@@ -185,23 +185,7 @@
 		$row = project_check($post, $file);
 
 		$wpdb->insert("xy_project", $row);
-		/*
-		$insert_sql = "INSERT INTO " . $table_name . "(project_name, project_manager, project_member, project_start_date, project_finish_date, project_intro, project_pic, project_doc, project_url, project_auther_ID, project_tag) VALUES ('" 
-					. $post['project_name'] . "', '" 
-					. $wpdb->escape($post['project_manager']) . "','" 
-					. $wpdb->escape($post['project_member']) . "','" 
-					. $post['project_start_date'] . "','" 
-					. $post['project_finish_date'] . "','" 
-					. $wpdb->escape($post['project_intro']) . "','" 
-					. $wpdb->escape($post['project_pic']) . "','" 
-					. $wpdb->escape($post['project_doc']) . "','" 
-					. $wpdb->escape($post['project_url']) . "','" 
-					. $wpdb->escape($post['project_auther_ID']) . "','" 
-					. $wpdb->escape($post['project_tag']) . "')";
-		echo $insert_sql;
-		$results = $wpdb->query( $insert_sql );
-		echo $results;
-		*/
+		
 		echo "<div id='message' class='updated fade'><p><strong>项目己添加</strong></p></div>";
 	}
 ?>
