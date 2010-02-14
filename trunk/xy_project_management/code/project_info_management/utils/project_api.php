@@ -34,9 +34,9 @@ function get_project_list() {
 	global $wpdb;
 	$table_name = 'xy_project';
 	
-	$select_sql = "SELECT project_ID FROM " . $table_name . "WHERE project_allow = 1";
+	$select_sql = "SELECT project_ID FROM " . $table_name . " WHERE project_allow = 1";
 	$results = $wpdb->get_results($select_sql);
-	
+	//echo $select_sql;
 	$project_list = array();
 
 	foreach($results as $itemp) {
