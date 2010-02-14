@@ -7,10 +7,11 @@
 include_once('project_config.php');
 include_once('utils/project_api.php');
 
-$page_size = 2;
+$page_size = 3;
 
-if(isset($_GET['PB_page'])) {
-	$current_page = intval($_GET['PB_page']);
+if(isset($_GET['page'])) {
+	$current_page = intval($_GET['page']);
+	$current_page = intval($_GET['page']);
 }
 else {
 	$current_page = 1;
@@ -46,37 +47,62 @@ function print_project_rows($project_count, $page_size, $current_page, $project_
 	}
 }
 
-// 打印单行数据
-function print_single_row($single_project) {
-	echo "<tr><td>";
-	echo "<a href='project_edit.php?project_id=" . $single_project->print_project_name() . "'>" . $single_project->print_project_name() . "</a></td><td>";
-	echo $single_project->print_project_manager()."</td><td>";
-	echo $single_project->print_project_member()."</td><td>";
-	echo $single_project->print_project_start_date()."</td><td>";
-	echo $single_project->print_project_finish_date()."</td><td>";
-	echo $single_project->print_project_tag()."</td><td>";
-	echo "</td></tr>";
-}
-
 // 打印表尾
 function print_project_foot($project_count, $page_size) {
 	require_once('utils/page.class.php');
 	
 	$page=new page(array('total'=>$project_count, 'perpage'=>$page_size));
-	echo '<td>'.$page->show().'</td>';
+	//echo '<div id="project_page">'.$page->show(7).'</div>';
+	echo $page->show(7);
 }
 ?>
 
-<div>
-	<table cellspacing="0">
-		<thead>
-			<tr><?php print_project_head();?></tr>
-		</thead>		
-		<tbody>
-			<?php print_project_rows($project_count, $page_size, $current_page, $project_rs);?>
-		</tbody>
-		<tfoot>
-			<tr><?php print_project_foot($project_count, $page_size);?></tr>
-		</tfoot>
-	</table>
+<?php 
+// 打印单行数据
+function print_single_row($single_project) {
+?>
+<div id="project">
+	<div class="project_list">
+		<div class="project_content">
+			<div class="project_title">
+				<div class="project_title_side"><img src="images/project_title_01.gif"></div>
+				<div class="project_title_text">
+				<a href='project_show.php?project_id=<?php $single_project->print_project_id();?>'><span><?php $single_project->print_project_name();?></span></a><a href=<?php $single_project->print_project_download();?>><img src="images/project_title_06.gif"></a>
+				</div>
+				<div class="project_title_side"><img src="images/project_title_02.gif"></div>
+			</div>
+			<div class="project_info">
+				<p><?php $single_project->print_project_intro();?></p>
+			</div>
+			<div class="project_link">
+				<a href="#"><img src="images/project_title_04.gif"></a><a href="#">linux</a> <a href="#">embed</a><a href="#">http server</a><a href="#">lightlevel</a>
+			</div>
+		</div>
+		<div class="project_pic"><img src=<?php $single_project->print_project_pic();?>></div>
+	</div>
 </div>
+<?php
+}
+?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link href="css/sub_style.css" rel="stylesheet" type="text/css" />
+		<script src="js/function.js" type="text/javascript"></script>
+		<title>xiyoulinux</title>
+	</head>
+	<body>
+		<div id="page">
+			<?php require('head.php');?>
+		    <div id="content">
+		       <?php print_project_rows($project_count, $page_size, $current_page, $project_rs);?>
+		       <div id="project_page">
+		        <?php print_project_foot($project_count, $page_size);?>
+		       </div>
+			</div>
+		</div>
+		<?php require("foot.php")?>
+	</body>
+</html>
