@@ -148,7 +148,6 @@
 		}
 		
 		$row = array('project_name' => $post['project_name'], 
-					'project_manager' => $post['project_manager'],
 					'project_member' => $post['project_member'],
 					'project_start_date' => $post['project_start_date'],
 					'project_finish_date' => $post['project_finish_date'],
@@ -156,6 +155,8 @@
 					'project_pic' => $post['project_pic'],
 					'project_doc' => $post['project_doc'],
 					'project_url' => $post['project_url'],
+					'project_download' => $post['project_download'],
+					'project_rss' => $post['project_rss'],
 					'project_auther_ID' => $post['project_auther_ID'],
 					'project_tag' => $post['project_tag']
 					);
