@@ -1,3 +1,4 @@
+<link href="../css/sub_style.css" rel="stylesheet" type="text/css" />
 <?php
 /**
  * filename: ext_page.class.php
@@ -30,7 +31,7 @@ class page
  /**
   * config ,public
   */
- var $page_name="PB_page";//page标签，用来控制url页。比如说xxx.php?PB_page=2中的PB_page
+ var $page_name="page";//page标签，用来控制url页。比如说xxx.php?PB_page=2中的PB_page
  var $next_page='>';//下一页
  var $pre_page='<';//上一页
  var $first_page='First';//首页
@@ -116,7 +117,7 @@ class page
   if($this->nowindex<$this->totalpage){
    return $this->_get_link($this->_get_url($this->nowindex+1),$this->next_page,$style);
   }
-  return '<span class="'.$style.'">'.$this->next_page.'</span>';
+  return $this->_get_link($this->_get_url($this->nowindex+1),$this->next_page,$style);
  }
  
  /**
@@ -130,7 +131,7 @@ class page
   if($this->nowindex>1){
    return $this->_get_link($this->_get_url($this->nowindex-1),$this->pre_page,$style);
   }
-  return '<span class="'.$style.'">'.$this->pre_page.'</span>';
+  return $this->_get_link($this->_get_url($this->nowindex-1),$this->pre_page,$style);
  }
  
  /**
@@ -172,7 +173,7 @@ class page
     if($i!=$this->nowindex)
         $return.=$this->_get_text($this->_get_link($this->_get_url($i),$i,$style));
     else 
-        $return.=$this->_get_text('<span class="'.$nowindex_style.'">'.$i.'</span>');
+        $return.=$this->_get_text($this->_get_link($this->_get_url($i),$i,$nowindex_style));
    }else{
     break;
    }
@@ -249,6 +250,12 @@ class page
    case '5':
     return $this->pre_bar().$this->pre_page().$this->nowbar().$this->next_page().$this->next_bar();
     break;
+   //for xiyoulinux project
+   case '7':
+    $this->next_page='Next';
+    $this->pre_page='Prev';
+    return $this->pre_page($style='project_page_side').$this->nowbar($style='',$nowindex_style='project_page_now').$this->next_page('project_page_side');
+    break;
   }
   
  }
@@ -324,7 +331,8 @@ class page
   */ 
  function _get_text($str)
  {
-  return $this->format_left.$str.$this->format_right;
+  //return $this->format_left.$str.$this->format_right;
+  return $str;
  }
  
  /**
