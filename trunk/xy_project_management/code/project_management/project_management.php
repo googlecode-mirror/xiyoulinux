@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Project Management
-Plugin URI: http://www.xiyoulinux.cn/
+Plugin URI: http://code.google.com/p/xiyoulinux/
 Description: 项目管理
 Version: 0.2
 Author: SK, LUCIEN
@@ -21,7 +21,6 @@ function project_install() {
 		$install_sql = "CREATE TABLE " . $table_name . " (
 				project_ID bigint(20) unsigned NOT NULL AUTO_INCREMENT,
 				project_name varchar(255) DEFAULT NULL,
-				project_manager varchar(255) DEFAULT NULL,
 				project_member varchar(255) DEFAULT NULL,
 				project_start_date date DEFAULT NULL,
 				project_finish_date date DEFAULT NULL,
@@ -42,23 +41,21 @@ function project_install() {
 		dbDelta($install_sql);
 	    
 	    //for init...
-		$project_name = "Project Management";
-		$project_manager = "SK";
-		$project_member = "lucien, zhaogejuan, liuzhouping";
+		$project_name = "ZeroClipboard";
+		$project_member = "test1, test2";
 		$project_start_date = "2010-1-1";
 		$project_finish_date = "2010-2-15";
-		$project_intro = "manage linux group's project";
-		$project_pic = "Project Management";
-		$project_doc = "http://xiyoulinux.cn";
-		$project_url = "http://code.google.com/p/xiyoulinux/";
-		$project_download = "http://code.google.com/p/xiyoulinux/";
-		$project_rss = "http://code.google.com/feeds/p/xiyoulinux/updates/basic";
+		$project_intro = "在IE6时代，复制到剪贴板非常简单。但是如今Firefox等浏览器出于安全考虑，默认禁止直接访问剪贴板。对于某些必须具备访问剪贴板能力的网站，通过使用强大的Javascript和Flash文件，ZeroClipboard可以让你绕过浏览器的限制。";
+		$project_pic = "http://img.cnbeta.com/upimg/100201/LonelyJames_1951341764161608_small.jpg";
+		$project_doc = "http://code.google.com/p/zeroclipboard/";
+		$project_url = "http://code.google.com/p/zeroclipboard/";
+		$project_download = "http://zeroclipboard.googlecode.com/files/zeroclipboard-1.0.5.tar.gz";
+		$project_rss = "http://code.google.com/feeds/p/zeroclipboard/updates/basic";
 		$project_auther_ID = 1;
-		$project_tag = "project";
-		$project_allow = 0;
+		$project_tag = "project, clipboard";
+		$project_allow = 1;
 		
 		$init_array = array('project_name' => $project_name, 
-						'project_manager' => $project_manager,
 						'project_member' => $project_member,
 						'project_start_date' => $project_start_date,
 						'project_finish_date' => $project_finish_date,
@@ -74,10 +71,6 @@ function project_install() {
 						);
 
 		$wpdb->insert($table_name, $init_array);
-
-		//$insert_sql = "INSERT INTO " . $table_name . " (project_name, project_manager, project_info) " . "VALUES ('" . $project_name . "','" . $wpdb->escape($project_manager) . "','" . $wpdb->escape($project_info) . "')";
-		
-		//$results = $wpdb->query( $insert_sql );
 	}
 }
 
@@ -109,20 +102,6 @@ function fn_project_api()
 	include('utils/project_api.php');
 }
 
-//api for test show
-function fn_project_show()
-{
-	//echo "show";
-	include('frontstage/project_show.php');
-}
-
-//api for test list
-function fn_project_list()
-{
-	//echo "list";
-	include('frontstage/project_list.php');
-}
-
 // 在控制面板中添加控件
 function project_dashboard_install() {
 	if (function_exists('add_menu_page')) {
@@ -132,8 +111,6 @@ function project_dashboard_install() {
 		add_submenu_page('project', '添加项目', '添加项目', 8, 'project_add', 'fn_project_add');
 		add_submenu_page('project', '', '', 8, 'project_edit', 'fn_project_edit');
 		add_submenu_page('project', '', '', 8, 'project_api', 'fn_project_api');
-		add_submenu_page('project', '', '', 8, 'project_show', 'fn_project_show');
-		add_submenu_page('project', '', '', 8, 'project_list', 'fn_project_list');
 		
 	}
 }
