@@ -53,7 +53,7 @@ function get_project_list() {
 class Project {
 	private $project_id = "0";
 	private $project_name = "test";
-	private $project_manager = "test";
+	//private $project_manager = "test";
 	private $project_member = "test";
 	private $project_start_date = "2010-01-01";
 	private $project_finish_date = "2010-01-01";
@@ -78,7 +78,7 @@ class Project {
 		//echo $this->project_id;
 		$this->project_name = $row->project_name;
 		//echo $this->project_name;
-		$this->project_manager = $row->project_manager;
+		//$this->project_manager = $row->project_manager;
 		$this->project_member = $row->project_member;
 		$this->project_start_date = $row->project_start_date;
 		$this->project_finish_date = $row->project_finish_date;
@@ -103,10 +103,10 @@ class Project {
 		echo $this->project_name;
 	}
 	//显示项目管理者
-	public function print_project_manager() {
+	//public function print_project_manager() {
 		
-		echo $this->project_manager;
-	}
+	//	echo $this->project_manager;
+	//}
 	//显示项目成员
 	public function print_project_member() {
 		
