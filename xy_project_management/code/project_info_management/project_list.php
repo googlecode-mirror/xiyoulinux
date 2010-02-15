@@ -79,7 +79,7 @@ function print_single_row($single_project) {
 				<a href="#"><img src="images/project_title_04.gif"></a><a href="#">linux</a> <a href="#">embed</a><a href="#">http server</a><a href="#">lightlevel</a>
 			</div>
 		</div>
-		<div class="project_pic"><img src=<?php project_info_path.$single_project->print_project_pic();?>></div>
+		<div class="project_pic"><img src=<?php echo $single_project->get_project_pic_path();?>></div>
 	</div>
 </div>
 <?php
