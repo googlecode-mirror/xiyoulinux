@@ -152,6 +152,10 @@ class Project {
 		
 		echo $this->project_pic;
 	}
+	public function get_project_pic_path() {
+		
+		return project_pic_path.$this->project_pic;
+	}
 	//显示项目文档
 	public function print_project_doc() {
 		
@@ -193,7 +197,7 @@ class Project {
 		echo $project_download_name;
 	}
 }
-//$myproject = new Project(1);
-//$myproject->print_project_rss();
+$myproject = new Project(1);
+echo $myproject->get_project_pic_path();
 //echo "after project_api";
 ?>
