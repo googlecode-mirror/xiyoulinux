@@ -197,7 +197,7 @@ class Project {
 		echo $project_download_name;
 	}
 }
-$myproject = new Project(1);
-echo $myproject->get_project_pic_path();
+//$myproject = new Project(1);
+//echo $myproject->get_project_pic_path();
 //echo "after project_api";
 ?>
