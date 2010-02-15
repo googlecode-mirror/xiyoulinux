@@ -32,7 +32,7 @@ function project_install() {
 				project_rss varchar(255) DEFAULT NULL,
 				project_auther_ID bigint(20) unsigned DEFAULT NULL,
 				project_tag varchar(255) DEFAULT NULL,
-				project_allow int(11) DEFAULT 0,
+				project_allow tinyint(1) DEFAULT 0,
 				PRIMARY KEY(project_ID)
 				) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
 		
@@ -42,16 +42,16 @@ function project_install() {
 	    
 	    //for init...
 		$project_name = "ZeroClipboard";
-		$project_member = "test1, test2";
+		$project_member = "test1, test2, test3, test4";
 		$project_start_date = "2010-1-1";
 		$project_finish_date = "2010-2-15";
 		$project_intro = "在IE6时代，复制到剪贴板非常简单。但是如今Firefox等浏览器出于安全考虑，默认禁止直接访问剪贴板。对于某些必须具备访问剪贴板能力的网站，通过使用强大的Javascript和Flash文件，ZeroClipboard可以让你绕过浏览器的限制。";
-		$project_pic = "http://img.cnbeta.com/upimg/100201/LonelyJames_1951341764161608_small.jpg";
+		$project_pic = "/project_info_management/project_images/ZeroClipboard.gif";
 		$project_doc = "http://code.google.com/p/zeroclipboard/";
 		$project_url = "http://code.google.com/p/zeroclipboard/";
 		$project_download = "http://zeroclipboard.googlecode.com/files/zeroclipboard-1.0.5.tar.gz";
 		$project_rss = "http://code.google.com/feeds/p/zeroclipboard/updates/basic";
-		$project_auther_ID = 1;
+		$project_auther_ID = 0;
 		$project_tag = "project, clipboard";
 		$project_allow = 1;
 		
@@ -110,7 +110,7 @@ function project_dashboard_install() {
 	if (function_exists('add_submenu_page')) {
 		add_submenu_page('project', '添加项目', '添加项目', 8, 'project_add', 'fn_project_add');
 		add_submenu_page('project', '', '', 8, 'project_edit', 'fn_project_edit');
-		add_submenu_page('project', '', '', 8, 'project_api', 'fn_project_api');
+		//add_submenu_page('project', '', '', 8, 'project_api', 'fn_project_api');
 		
 	}
 }
