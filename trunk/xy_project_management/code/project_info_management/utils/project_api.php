@@ -8,21 +8,43 @@ include_once('../project_config.php');
 //echo project_path;
 require_once(project_info_path.'/../wordpress/wp-config.php');
 
+// for cut the string
+function iSubStr($str, $len) {   
+	$i = 0;   
+    $tlen = 0;   
+    $tstr = '';   
+    while ($tlen < $len) {   
+		$chr = mb_substr($str, $i, 1, 'utf8');   
+		$chrLen = ord($chr) > 127 ? 2 : 1;   
+		if ($tlen + $chrLen > $len) break;   
+		$tstr .= $chr;   
+        $tlen += $chrLen;   
+        $i ++;   
+    }   
+	if ($tstr != $str) {   
+        $tstr .= '...';   
+    }   
+    return $tstr;   
+}  
+
+
 // for print project's feed
 function print_feed($myfeed='http://code.google.com/feeds/p/xiyoulinux/updates/basic', $feedtitle='西邮Linux小组网站更新', $shownumber = '3'){
 	require_once (ABSPATH . WPINC . '/rss-functions.php');
 	
 	$rss = @fetch_rss($myfeed);
 	if(isset($rss->items) && 0 != count($rss->items)) {
-		echo '<h3>' . $feedtitle . '</h3><ul>';
+		//echo '<h3>' . $feedtitle . '</h3><ul>';
 		$rss->items = array_slice($rss->items, 0, $shownumber);
 		foreach ($rss->items as $item) {
-			$title = $item['title'];
-			$title_url = $item['link'];
-			echo "<br>TITLE: ".$title;
-			//echo "<br>URL: ".$title_url;
-			//echo "<li><a href=$url>$title</a></li>";
-			//echo $item['description'];
+			//$title = $item['title'];
+			//$title_url = $item['link'];
+			//echo "<br>TIME: ".$item['updated'];
+			//echo "<br>LINK: ".$item['link'];
+			echo "<li>".iSubStr($item['title'], 140)."</br>";
+			echo "Committed by ".$item['author_name']."</br>";
+			echo "Posted at ".$item['updated']."</li>";
+			//echo "<br>atom_content: ".iSubStr($item['atom_content'], 200);
 		}
 	}
 	echo "</ul>";
@@ -53,7 +75,6 @@ function get_project_list() {
 class Project {
 	private $project_id = "0";
 	private $project_name = "test";
-	//private $project_manager = "test";
 	private $project_member = "test";
 	private $project_start_date = "2010-01-01";
 	private $project_finish_date = "2010-01-01";
@@ -78,7 +99,6 @@ class Project {
 		//echo $this->project_id;
 		$this->project_name = $row->project_name;
 		//echo $this->project_name;
-		//$this->project_manager = $row->project_manager;
 		$this->project_member = $row->project_member;
 		$this->project_start_date = $row->project_start_date;
 		$this->project_finish_date = $row->project_finish_date;
@@ -150,7 +170,7 @@ class Project {
 	//显示项目更新
 	public function print_project_rss() {
 		//echo $this->project_rss;
-		print_feed($this->project_rss, $this->project_name, 5);
+		print_feed($this->project_rss, $this->project_name, 4);
 	}
 	//获取项目创建者ID
 	public function print_project_auther_ID() {
@@ -169,11 +189,11 @@ class Project {
 	}
 	//显示下载文件名称
 	public function print_project_download_name() {
-		
-		echo $this->project_download;
+		$project_download_name = end(explode('/',$this->project_download));
+		echo $project_download_name;
 	}
 }
 //$myproject = new Project(1);
-//$myproject->print_project_name();
+//$myproject->print_project_rss();
 //echo "after project_api";
 ?>
