@@ -15,7 +15,6 @@
 	function print_project_column()
 	{
 ?>		<th width=""><input type="checkbox" name="chkAll" value="" onClick="check(this.form)">&nbsp;项目</th>
-		<th>管理者</th>
 		<th>成员</th>
 		<th>开始日期</th>
 		<th>截止日期</th>
@@ -84,8 +83,7 @@
 			foreach ($myrows as $myrow) {
 				echo "<tr>
 						<td>"."&nbsp;<input type='checkbox' name='chk[]' id='chk' value=".$myrow['project_ID'].">&nbsp;".$myrow["project_name"]."</td>
-						<td>".$myrow["project_manager"]."</td>
-						<td>".$myrow["project_manager"]."</td>
+						<td>".$myrow["project_member"]."</td>
 						<td>".$myrow["project_start_date"]."</td>
 						<td>".$myrow["project_finish_date"]."</td>
 						<td>".$myrow["project_tag"]."</td>
