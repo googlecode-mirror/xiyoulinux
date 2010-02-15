@@ -31,7 +31,7 @@ $myproject = new Project($project_id);
 		    <div id="content">
 		       <div id="project">
 		       		<div class="project_single">
-		                <div class="single_pic"><img src=<?php $myproject->print_project_pic();?>></div>
+		                <div class="single_pic"><img src=<?php echo $myproject->get_project_pic_path();?>></div>
 		                <div class="single_text">
 		                    <span><?php $myproject->print_project_intro();?></span>
 		                    <a href=<?php $myproject->print_project_download();?>><div id="single_download"><?php $myproject->print_project_download_name();?></div></a>
