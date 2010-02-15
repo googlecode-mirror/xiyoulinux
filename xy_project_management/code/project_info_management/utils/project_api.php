@@ -167,6 +167,11 @@ class Project {
 		
 		return $this->project_allow;
 	}
+	//显示下载文件名称
+	public function print_project_download_name() {
+		
+		echo $this->project_download;
+	}
 }
 //$myproject = new Project(1);
 //$myproject->print_project_name();

@@ -1,3 +1,4 @@
+<?php header("Content-Type: text/html; charset=utf-8");?>
 <?php 
 /*
  * File Name: project_list.php
@@ -10,7 +11,6 @@ include_once('utils/project_api.php');
 $page_size = 3;
 
 if(isset($_GET['page'])) {
-	$current_page = intval($_GET['page']);
 	$current_page = intval($_GET['page']);
 }
 else {
@@ -54,6 +54,7 @@ function print_project_foot($project_count, $page_size) {
 	$page=new page(array('total'=>$project_count, 'perpage'=>$page_size));
 	//echo '<div id="project_page">'.$page->show(7).'</div>';
 	echo $page->show(7);
+	//echo project_info_path;
 }
 ?>
 
@@ -67,7 +68,7 @@ function print_single_row($single_project) {
 			<div class="project_title">
 				<div class="project_title_side"><img src="images/project_title_01.gif"></div>
 				<div class="project_title_text">
-				<a href='project_show.php?project_id=<?php $single_project->print_project_id();?>'><span><?php $single_project->print_project_name();?></span></a><a href=<?php $single_project->print_project_download();?>><img src="images/project_title_06.gif"></a>
+				<a href='project_show.php?project=<?php $single_project->print_project_id();?>'><span><?php $single_project->print_project_name();?></span></a><a href=<?php $single_project->print_project_download();?>><img src="images/project_title_06.gif"></a>
 				</div>
 				<div class="project_title_side"><img src="images/project_title_02.gif"></div>
 			</div>
@@ -78,7 +79,7 @@ function print_single_row($single_project) {
 				<a href="#"><img src="images/project_title_04.gif"></a><a href="#">linux</a> <a href="#">embed</a><a href="#">http server</a><a href="#">lightlevel</a>
 			</div>
 		</div>
-		<div class="project_pic"><img src=<?php $single_project->print_project_pic();?>></div>
+		<div class="project_pic"><img src=<?php project_info_path.$single_project->print_project_pic();?>></div>
 	</div>
 </div>
 <?php
