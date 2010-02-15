@@ -95,7 +95,7 @@
 				<h3><label><?php echo "是否允许" ?></label></h3>
 				<div class="inside">
 					<input type="text" name="project_allow" size="30" tabindex="1" value="<?php echo isset($row) ? esc_attr($row->project_allow) : ''; ?>" id="link_project_allow" />
-				    <p><?php _e('Example: Lucien xin'); ?></p>
+				    <p><?php _e('Example: 0 or 1'); ?></p>
 				</div>
 			</div>
 
