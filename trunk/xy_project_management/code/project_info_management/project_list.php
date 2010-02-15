@@ -91,7 +91,6 @@ function print_single_row($single_project) {
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<link href="css/sub_style.css" rel="stylesheet" type="text/css" />
-		<script src="js/function.js" type="text/javascript"></script>
 		<title>xiyoulinux</title>
 	</head>
 	<body>
