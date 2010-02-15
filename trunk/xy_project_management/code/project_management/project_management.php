@@ -46,7 +46,7 @@ function project_install() {
 		$project_start_date = "2010-1-1";
 		$project_finish_date = "2010-2-15";
 		$project_intro = "在IE6时代，复制到剪贴板非常简单。但是如今Firefox等浏览器出于安全考虑，默认禁止直接访问剪贴板。对于某些必须具备访问剪贴板能力的网站，通过使用强大的Javascript和Flash文件，ZeroClipboard可以让你绕过浏览器的限制。";
-		$project_pic = "/project_info_management/project_images/ZeroClipboard.gif";
+		$project_pic = "ZeroClipboard.gif";
 		$project_doc = "http://code.google.com/p/zeroclipboard/";
 		$project_url = "http://code.google.com/p/zeroclipboard/";
 		$project_download = "http://zeroclipboard.googlecode.com/files/zeroclipboard-1.0.5.tar.gz";
