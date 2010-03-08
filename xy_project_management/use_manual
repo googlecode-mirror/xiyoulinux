@@ -2,5 +2,5 @@
 目前包含前台、独立后台、wp后台～
 
 wp后台：位于/code/project_management，可用/plugin/project_management.zip直接安装插件，点击左侧面板即可；
-前台  ：位于/code/project_info_management，将其放于apache webroot下，访问/project_list.php即可；
-后台  ：位于/code/project_info_management/backstage，同上，访问/project_index.php即可。
+前台  ：位于/code/project，将其放于apache webroot下，访问/project_list.php即可；
+后台  ：位于/code/project/backstage，同上，访问/project_index.php即可。
