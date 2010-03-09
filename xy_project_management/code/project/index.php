@@ -67,20 +67,20 @@ function print_single_row($single_project) {
 	<div class="project_list">
 		<div class="project_content">
 			<div class="project_title">
-				<div class="project_title_side"><img src="images/project_title_01.gif"></div>
+				<div class="project_title_side"><img src="../images/project_title_01.gif"></div>
 				<div class="project_title_text">
-				<a href='project_show.php?project=<?php $single_project->print_project_id();?>'><span><?php $single_project->print_project_name();?></span></a><a href=<?php $single_project->print_project_download();?>><img src="images/project_title_06.gif"></a>
+				<a href='project_show.php?project=<?php $single_project->print_project_id();?>'><span><?php $single_project->print_project_name();?></span></a><a href=<?php $single_project->print_project_download();?>><img src="../images/project_title_06.gif"></a>
 				</div>
-				<div class="project_title_side"><img src="images/project_title_02.gif"></div>
+				<div class="project_title_side"><img src="../images/project_title_02.gif"></div>
 			</div>
 			<div class="project_info">
 				<p><?php $single_project->print_project_intro();?></p>
 			</div>
 			<div class="project_link">
-				<a href="#"><img src="images/project_title_04.gif"></a><a href="#">linux</a> <a href="#">embed</a><a href="#">http server</a><a href="#">lightlevel</a>
+				<a href="#"><img src="../images/project_title_04.gif"></a><a href="#">linux</a> <a href="#">embed</a><a href="#">http server</a><a href="#">lightlevel</a>
 			</div>
 		</div>
-		<div class="project_pic"><img src=<?php echo $single_project->get_project_pic_path();?>></div>
+		<div class="project_pic"><img src=<?php echo "../".$single_project->get_project_pic_path();?>></div>
 	</div>
 </div>
 <?php

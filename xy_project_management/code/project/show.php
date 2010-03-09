@@ -30,7 +30,7 @@ $myproject = new Project($project_id);
 		    <div id="content">
 		       <div id="project">
 		       		<div class="project_single">
-		                <div class="single_pic"><img src=<?php echo $myproject->get_project_pic_path();?>></div>
+		                <div class="single_pic"><img src=<?php echo "../".$myproject->get_project_pic_path();?>></div>
 		                <div class="single_text">
 		                    <span><?php $myproject->print_project_intro();?></span>
 		                    <a href=<?php $myproject->print_project_download();?>><div id="single_download"><?php $myproject->print_project_download_name();?></div></a>
@@ -71,9 +71,9 @@ $myproject = new Project($project_id);
 		                        </div>
 		                    </div>
 		                    <div id="single_intro_botttom">
-		                    	<div class="single_intro_side"><img src="images/project_single_05.gif"></div>
+		                    	<div class="single_intro_side"><img src="../images/project_single_05.gif"></div>
 		                        <div id="single_intro_line"></div>
-		                        <div class="single_intro_side"><img src="images/project_single_06.gif"></div>
+		                        <div class="single_intro_side"><img src="../images/project_single_06.gif"></div>
 		                    </div>
 		                </div>
 		                <div class="single_text">
@@ -81,7 +81,7 @@ $myproject = new Project($project_id);
 		                    <div id="single_update_content">
 		                    	<div id="single_update_title">
 		                        	<span><?php $myproject->print_project_name();?> updates</span>
-		                            <img src="images/project_single_08.gif">
+		                            <img src="../images/project_single_08.gif">
 		                        </div>
 		                        <div id="single_update_text">
 		                        	<ul>
@@ -90,24 +90,24 @@ $myproject = new Project($project_id);
 		                        </div>
 		                    </div>
 		                    <div id="single_update_botttom">
-		                    	<div class="single_intro_side"><img src="images/project_single_05.gif"></div>
+		                    	<div class="single_intro_side"><img src="../images/project_single_05.gif"></div>
 		                        <div id="single_update_line"></div>
-		                        <div class="single_intro_side"><img src="images/project_single_06.gif"></div>
+		                        <div class="single_intro_side"><img src="../images/project_single_06.gif"></div>
 		                    </div>
 		                </div>
 		            </div>
 		            <div id="single_about">
 		            	<div id="single_about_title">
-		                	<div class="project_title_side"><img src="images/project_title_01.gif"></div>
+		                	<div class="project_title_side"><img src="../images/project_title_01.gif"></div>
 		                    <div id="single_about_text">相关项目</div>
-		                    <div class="project_title_side"><img src="images/project_title_02.gif"></div>
+		                    <div class="project_title_side"><img src="../images/project_title_02.gif"></div>
 		                </div>
 		                <div id="single_about_pic">
 		                	<ul>
-		                	<li><a href="#"><img src="images/project_single_09.gif"></a></li>
-		                    <li><a href="#"><img src="images/project_single_09.gif" /></a></li>
-		                    <li><a href="#"><img src="images/project_single_09.gif"></a></li>
-		                    <li><a href="#"><img src="images/project_single_09.gif"></a></li>
+		                	<li><a href="#"><img src="../images/project_single_09.gif"></a></li>
+		                    <li><a href="#"><img src="../images/project_single_09.gif" /></a></li>
+		                    <li><a href="#"><img src="../images/project_single_09.gif"></a></li>
+		                    <li><a href="#"><img src="../images/project_single_09.gif"></a></li>
 		                   </ul>
 		                </div>
 		            </div>
