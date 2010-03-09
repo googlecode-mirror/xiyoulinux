@@ -1,5 +1,5 @@
 <?php header("Content-Type: text/html; charset=utf-8");?>
-<?php 
+<?php
 /*
  * File Name: project_list.php
  * Description:	项目列表前台展示
@@ -17,6 +17,7 @@ else {
 	$current_page = 1;
 }
 //echo "current_page: ".$current_page;
+
 $project_rs = get_project_list();
 $project_count = count($project_rs);
 //echo "<br>project_count: ".$project_count;
@@ -90,12 +91,12 @@ function print_single_row($single_project) {
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<link href="css/sub_style.css" rel="stylesheet" type="text/css" />
+		<link href="../css/sub_style.css" rel="stylesheet" type="text/css" />
 		<title>xiyoulinux</title>
 	</head>
 	<body>
 		<div id="page">
-			<?php require('head.php');?>
+			<?php require('../include/head.php');?>
 		    <div id="content">
 		       <?php print_project_rows($project_count, $page_size, $current_page, $project_rs);?>
 		       <div id="project_page">
@@ -103,6 +104,6 @@ function print_single_row($single_project) {
 		       </div>
 			</div>
 		</div>
-		<?php require("foot.php")?>
+		<?php require('../include/foot.php');?>
 	</body>
 </html>

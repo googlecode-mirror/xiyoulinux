@@ -6,7 +6,8 @@
 //echo "before project_api";
 include_once('../project_config.php');
 //echo project_path;
-require_once(project_info_path.'/../wordpress/wp-config.php');
+require_once(project_path.'/../'.wordpress_name.'/wp-config.php');
+//echo project_path.'/../'.wordpress_name.'/wp-config.php';
 
 // for cut the string
 function iSubStr($str, $len) {   
@@ -26,7 +27,6 @@ function iSubStr($str, $len) {
     }   
     return $tstr;   
 }  
-
 
 // for print project's feed
 function print_feed($myfeed='http://code.google.com/feeds/p/xiyoulinux/updates/basic', $feedtitle='西邮Linux小组网站更新', $shownumber = '3'){
@@ -54,7 +54,7 @@ function print_feed($myfeed='http://code.google.com/feeds/p/xiyoulinux/updates/b
 // for get project list
 function get_project_list() {
 	global $wpdb;
-	$table_name = 'xy_project';
+	$table_name = project_table_name;
 	
 	$select_sql = "SELECT project_ID FROM " . $table_name . " WHERE project_allow = 1";
 	$results = $wpdb->get_results($select_sql);
@@ -71,27 +71,27 @@ function get_project_list() {
 }
 //get_project_list();
 
-// for single project
+// class for single project
 class Project {
-	private $project_id = "0";
-	private $project_name = "test";
-	private $project_member = "test";
+	private $project_id = -1;
+	private $project_name = "xy_project_management";
+	private $project_member = "sk";
 	private $project_start_date = "2010-01-01";
 	private $project_finish_date = "2010-01-01";
-	private $project_intro = "test";
-	private $project_pic = "test";
-	private $project_doc = "test";
-	private $project_url = "test";
-	private $project_download = "test";
-	private $project_rss = "test";
+	private $project_intro = "project management for xiyou linux group";
+	private $project_pic = "http://www.xiyoulinux.org/project/";
+	private $project_doc = "http://www.xiyoulinux.org/project/";
+	private $project_url = "http://www.xiyoulinux.org/project/";
+	private $project_download = "http://www.xiyoulinux.org/project/";
+	private $project_rss = "http://www.xiyoulinux.org/project/";
 	private $project_auther_ID = 1;
-	private $project_tag = "test";
+	private $project_tag = "xiyou, project";
 	private $project_allow = 0;
 	
 	//构造
 	function __construct($id) {
 		global $wpdb;
-		$table_name = 'xy_project';
+		$table_name = project_table_name;
 		
 		$select_sql = "SELECT * FROM " . $table_name . " WHERE project_ID = ".$id;
 		$row = $wpdb->get_row($select_sql);
