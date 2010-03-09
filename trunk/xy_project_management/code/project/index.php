@@ -5,8 +5,8 @@
  * Description:	项目列表前台展示
  */
  
-include_once('project_config.php');
-include_once('utils/project_api.php');
+include_once('./project_config.php');
+include_once('./utils/project_api.php');
 
 $page_size = 3;
 
