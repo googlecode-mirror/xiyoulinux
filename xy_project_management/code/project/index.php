@@ -5,8 +5,8 @@
  * Description:	项目列表前台展示
  */
  
-include_once('./project_config.php');
-include_once('./utils/project_api.php');
+include_once('project_config.php');
+include_once('utils/project_api.php');
 
 $page_size = 3;
 
@@ -69,7 +69,7 @@ function print_single_row($single_project) {
 			<div class="project_title">
 				<div class="project_title_side"><img src="../images/project_title_01.gif"></div>
 				<div class="project_title_text">
-				<a href='project_show.php?project=<?php $single_project->print_project_id();?>'><span><?php $single_project->print_project_name();?></span></a><a href=<?php $single_project->print_project_download();?>><img src="../images/project_title_06.gif"></a>
+				<a href='show.php?project=<?php $single_project->print_project_id();?>'><span><?php $single_project->print_project_name();?></span></a><a href=<?php $single_project->print_project_download();?>><img src="../images/project_title_06.gif"></a>
 				</div>
 				<div class="project_title_side"><img src="../images/project_title_02.gif"></div>
 			</div>
