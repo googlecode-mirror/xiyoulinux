@@ -4,7 +4,6 @@
  * Description:	项目API函数集
  */
 //echo "before project_api";
-include_once('./../project_config.php');
 //echo project_path;
 require_once(project_path.'/../'.wordpress_name.'/wp-config.php');
 //echo project_path.'/../'.wordpress_name.'/wp-config.php';
