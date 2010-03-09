@@ -16,18 +16,17 @@ else {
 }
 
 $myproject = new Project($project_id);
-
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<link href="css/sub_style.css" rel="stylesheet" type="text/css" />
+		<link href="../css/sub_style.css" rel="stylesheet" type="text/css" />
 		<title><?php $myproject->print_project_name();?></title>
 	</head>
 	<body>
 		<div id="page">
-			<?php require('head.php');?>
+			<?php require('../include/head.php');?>
 		    <div id="content">
 		       <div id="project">
 		       		<div class="project_single">
@@ -115,6 +114,6 @@ $myproject = new Project($project_id);
 		       </div>  
 			</div>
 		</div>
-		<?php require("foot.php")?>
+		<?php require("../include/foot.php")?>
 	</body>
 </html>
